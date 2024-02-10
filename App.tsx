@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import theme from './constants/theme';
 import { horizontalScale, verticalScale } from './helpers/scaleHelpers';
 import { getDataFromAsyncStorage } from './helpers/asyncStorageHelpers';

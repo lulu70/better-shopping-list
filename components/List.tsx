@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
+import { FlatList, StyleSheet } from 'react-native';
+import { verticalScale } from '../helpers/scaleHelpers';
 import theme from '../constants/theme';
 import { type ItemWithId } from '../App';
+import ListItem from './ListItem';
 
 interface Props {
   shoppingList: ItemWithId[];
@@ -13,12 +14,8 @@ const List = ({ shoppingList }: Props) => {
     <FlatList
       contentContainerStyle={styles.container}
       data={shoppingList}
-      renderItem={({ item }) => (
-        <View style={styles.listItem} key={item.id}>
-          <Text style={styles.checkedIcon}>{item.checked ? '✔️' : '◯'}</Text>
-          <Text>{item.content}</Text>
-        </View>
-      )}
+      renderItem={({ item }) => <ListItem item={item} />}
+      keyExtractor={(item, index) => item.id || index.toString()}
     />
   );
 };
@@ -29,9 +26,4 @@ const styles = StyleSheet.create({
   container: {
     marginTop: verticalScale(theme.spacing.spacing_10),
   },
-  listItem: {
-    flexDirection: 'row',
-    marginTop: verticalScale(theme.spacing.spacing_6),
-  },
-  checkedIcon: { marginRight: horizontalScale(theme.spacing.spacing_12) },
 });
