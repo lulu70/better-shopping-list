@@ -4,6 +4,7 @@ import { SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native';
 import theme from './constants/theme';
 import { horizontalScale, verticalScale } from './helpers/scaleHelpers';
 import { getDataFromAsyncStorage } from './helpers/asyncStorageHelpers';
+import List from './components/List';
 
 export interface Item {
   content: string;
@@ -48,18 +49,7 @@ export default function App() {
       <View style={styles.innerContainer}>
         <StatusBar style="auto" />
         <Text style={styles.header}>Better Shopping List</Text>
-        <FlatList
-          contentContainerStyle={styles.list}
-          data={shoppingList}
-          renderItem={({ item }) => (
-            <View style={styles.listItem} key={item.id}>
-              <Text style={styles.checkedIcon}>
-                {item.checked ? '✔️' : '◯'}
-              </Text>
-              <Text>{item.content}</Text>
-            </View>
-          )}
-        />
+        <List shoppingList={shoppingList} />
       </View>
     </SafeAreaView>
   );
@@ -79,12 +69,4 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(theme.spacing.spacing_20),
     textAlign: 'center',
   },
-  list: {
-    marginTop: verticalScale(theme.spacing.spacing_10),
-  },
-  listItem: {
-    flexDirection: 'row',
-    marginTop: verticalScale(theme.spacing.spacing_6),
-  },
-  checkedIcon: { marginRight: horizontalScale(theme.spacing.spacing_12) },
 });
