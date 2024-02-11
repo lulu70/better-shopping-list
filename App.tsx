@@ -38,7 +38,6 @@ export default function App() {
   }, []);
 
   // clear async storage
-
   // React.useEffect(() => {
   //   clearAsyncStorage();
   // }, []);
