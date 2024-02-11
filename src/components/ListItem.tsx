@@ -3,21 +3,21 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import AppButton from './AppButton';
 import theme from '../constants/theme';
+import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 import { type ItemWithId } from '../screens/Main';
 
 interface Props {
   item: ItemWithId;
-  onCheckedPress: (id: string | null) => void;
-  onDeletePress: (id: string | null) => void;
 }
 
-const ListItem = ({ item, onCheckedPress, onDeletePress }: Props) => {
+const ListItem = ({ item }: Props) => {
+  const { changeCheckedItem, deleteItem } = React.useContext(MainContext);
   return (
     <View style={styles.listItem} key={item.id}>
       <AppButton
         onPress={() => {
-          onCheckedPress(item.id);
+          changeCheckedItem(item.id);
         }}
         text={item.checked ? '✔️' : '◯'}
         textStyle={styles.checkedIcon}
@@ -27,7 +27,7 @@ const ListItem = ({ item, onCheckedPress, onDeletePress }: Props) => {
         text="🗑️"
         style={styles.trashIcon}
         onPress={() => {
-          onDeletePress(item.id);
+          deleteItem(item.id);
         }}
       />
     </View>

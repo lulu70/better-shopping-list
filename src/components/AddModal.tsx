@@ -13,21 +13,21 @@ import {
 
 import AppButton from './AppButton';
 import theme from '../constants/theme';
+import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 
-interface Props {
-  addModalIsOpen: boolean;
-  closeAddModal: () => void;
-  addItem: (inputValue: string) => void;
-}
-const AddModal = ({ addModalIsOpen, closeAddModal, addItem }: Props) => {
+const AddModal = () => {
+  const { addItem, addModalIsOpen, closeAddModal } =
+    React.useContext(MainContext);
   const inputRef = React.useRef<TextInput>(null);
   const [inputValue, setInputValue] = React.useState('');
+
   React.useEffect(() => {
     if (addModalIsOpen) {
       inputRef?.current?.focus();
     }
   }, [addModalIsOpen]);
+
   const handleInputChange = (
     e: NativeSyntheticEvent<TextInputChangeEventData>,
   ) => {
