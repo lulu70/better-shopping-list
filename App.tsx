@@ -23,17 +23,8 @@ export interface ItemWithId extends Item {
 export default function App() {
   const [shoppingList, setShoppingList] = React.useState<ItemWithId[]>([]);
   const [addModalIsOpen, setAddModalIsOpen] = React.useState(false);
+
   React.useEffect(() => {
-    const getShoppingList = async () => {
-      const getDataResponse = await getDataFromAsyncStorage({
-        key: 'shoppingList',
-      });
-      if (getDataResponse.status === 'SUCCESS') {
-        if (getDataResponse.data) {
-          setShoppingList(getDataResponse.data);
-        }
-      }
-    };
     getShoppingList();
   }, []);
 
@@ -42,16 +33,28 @@ export default function App() {
   //   clearAsyncStorage();
   // }, []);
 
-  // write to async storage
-  // React.useEffect(() => {
-  //   storeDataInAsyncStorage({
-  //     key: 'shoppingList',
-  //     value: [
-  //       { id: '1', content: 'Milk', checked: true },
-  //       { id: '2', content: 'Bread', checked: false },
-  //     ],
-  //   });
-  // }, []);
+  const getShoppingList = async () => {
+    const getDataFromAsyncStorageResponse = await getDataFromAsyncStorage({
+      key: 'shoppingList',
+    });
+    if (getDataFromAsyncStorageResponse.status === 'SUCCESS') {
+      if (getDataFromAsyncStorageResponse.data) {
+        setShoppingList(getDataFromAsyncStorageResponse.data);
+      }
+    }
+  };
+
+  const updateShoppingListOnAsyncStorage = async (
+    newShoppingList: ItemWithId[],
+  ) => {
+    const storeDataInAsyncStorageResponse = await storeDataInAsyncStorage({
+      key: 'shoppingList',
+      value: newShoppingList,
+    });
+    if (storeDataInAsyncStorageResponse.status === 'SUCCESS') {
+      getShoppingList();
+    }
+  };
 
   const handleAddItemPress = () => {
     setAddModalIsOpen(true);
@@ -59,6 +62,7 @@ export default function App() {
   const closeAddModal = () => {
     setAddModalIsOpen(false);
   };
+
   const addItem = async (value: string) => {
     const item = {
       id: `${Date.now()}`,
@@ -66,22 +70,27 @@ export default function App() {
       checked: false,
     };
     const newShoppingList = [...shoppingList, item];
-    const storeDataInAsyncStorageResponse = await storeDataInAsyncStorage({
-      key: 'shoppingList',
-      value: newShoppingList,
-    });
-    if (storeDataInAsyncStorageResponse.status === 'SUCCESS') {
-      const getDataFromAsyncStorageResponse = await getDataFromAsyncStorage({
-        key: 'shoppingList',
-      });
-      if (getDataFromAsyncStorageResponse.status === 'SUCCESS') {
-        if (getDataFromAsyncStorageResponse.data) {
-          setShoppingList(getDataFromAsyncStorageResponse.data);
-          closeAddModal();
-        }
-      }
-    }
+    updateShoppingListOnAsyncStorage(newShoppingList);
   };
+
+  const handleOnCheckedPress = async (id: string | null) => {
+    const newShoppingList = shoppingList.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          checked: !item.checked,
+        };
+      }
+      return item;
+    });
+    updateShoppingListOnAsyncStorage(newShoppingList);
+  };
+
+  const handleOnDeletePress = async (id: string | null) => {
+    const newShoppingList = shoppingList.filter((item) => item.id !== id);
+    updateShoppingListOnAsyncStorage(newShoppingList);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.innerContainer}>
@@ -93,7 +102,11 @@ export default function App() {
           style={styles.addButton}
           textStyle={styles.addButtonText}
         />
-        <List shoppingList={shoppingList} />
+        <List
+          shoppingList={shoppingList}
+          onCheckedPress={handleOnCheckedPress}
+          onDeletePress={handleOnDeletePress}
+        />
         <AddModal
           addModalIsOpen={addModalIsOpen}
           closeAddModal={closeAddModal}
