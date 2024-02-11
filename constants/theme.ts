@@ -1,6 +1,7 @@
 interface Theme {
   colors: {
     background: string;
+    text_black: string;
   };
   fontSize: {
     fontSize_10: number;
@@ -12,6 +13,7 @@ interface Theme {
     fontSize_22: number;
     fontSize_24: number;
     fontSize_28: number;
+    fontSize_32: number;
   };
   spacing: {
     spacing_1: number;
@@ -48,11 +50,11 @@ interface Theme {
     spacing_96: number;
   };
   fontWeight: {
-    100: '100';
-    200: '200';
-    300: '300';
-    400: '400';
-    500: '500';
+    fontWeight_100: '100';
+    fontWeight_200: '200';
+    fontWeight_300: '300';
+    fontWeight_400: '400';
+    fontWeight_500: '500';
     bold: 'bold';
   };
 }
@@ -60,6 +62,7 @@ interface Theme {
 const theme: Theme = {
   colors: {
     background: 'blanchedalmond',
+    text_black: 'black',
   },
   fontSize: {
     fontSize_10: 10,
@@ -71,6 +74,7 @@ const theme: Theme = {
     fontSize_22: 22,
     fontSize_24: 24,
     fontSize_28: 28,
+    fontSize_32: 32,
   },
   spacing: {
     spacing_1: 1,
@@ -107,11 +111,11 @@ const theme: Theme = {
     spacing_96: 96,
   },
   fontWeight: {
-    100: '100',
-    200: '200',
-    300: '300',
-    400: '400',
-    500: '500',
+    fontWeight_100: '100',
+    fontWeight_200: '200',
+    fontWeight_300: '300',
+    fontWeight_400: '400',
+    fontWeight_500: '500',
     bold: 'bold',
   },
 };

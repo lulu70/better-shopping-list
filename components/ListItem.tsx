@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
-import theme from '../constants/theme';
+
 import { type ItemWithId } from '../App';
+import theme from '../constants/theme';
+import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 
 interface Props {
   item: ItemWithId;
