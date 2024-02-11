@@ -59,6 +59,19 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     updateShoppingListOnAsyncStorage(newShoppingList);
   };
 
+  const editItem = async (id: string | null, value: string) => {
+    const newShoppingList = shoppingList.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          content: value,
+        };
+      }
+      return item;
+    });
+    updateShoppingListOnAsyncStorage(newShoppingList);
+  };
+
   const changeCheckedItem = async (id: string | null) => {
     const newShoppingList = shoppingList.map((item) => {
       if (item.id === id) {
@@ -87,6 +100,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         addModalIsOpen,
         openAddModal,
         closeAddModal,
+        editItem,
       }}
     >
       {children}

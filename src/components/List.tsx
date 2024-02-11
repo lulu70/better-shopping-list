@@ -10,6 +10,7 @@ const List = () => {
   const { shoppingList } = React.useContext(MainContext);
   return (
     <FlatList
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}
       data={shoppingList}
       renderItem={({ item }) => <ListItem item={item} />}

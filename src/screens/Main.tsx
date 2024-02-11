@@ -1,6 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {
+  Keyboard,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import AddModal from '../components/AddModal';
 import AppButton from '../components/AppButton';
@@ -26,7 +33,7 @@ const Main = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.innerContainer}>
+      <Pressable style={styles.innerContainer} onPress={Keyboard.dismiss}>
         <StatusBar style="auto" />
         <Text style={styles.header}>Better Shopping List</Text>
         <AppButton
@@ -37,7 +44,7 @@ const Main = () => {
         />
         <List />
         <AddModal />
-      </View>
+      </Pressable>
     </SafeAreaView>
   );
 };

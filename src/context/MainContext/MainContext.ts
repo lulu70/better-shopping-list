@@ -10,6 +10,7 @@ export const mainContextInitialState = {
   addItem: () => {},
   changeCheckedItem: () => {},
   deleteItem: () => {},
+  editItem: () => {},
 };
 
 export interface MainContextState {
@@ -20,6 +21,7 @@ export interface MainContextState {
   addItem: (value: string) => void;
   changeCheckedItem: (id: string | null) => void;
   deleteItem: (id: string | null) => void;
+  editItem: (id: string | null, value: string) => void;
 }
 
 const MainContext = React.createContext<MainContextState>(

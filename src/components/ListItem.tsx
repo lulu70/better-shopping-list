@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  type NativeSyntheticEvent,
+  StyleSheet,
+  TextInput,
+  type TextInputChangeEventData,
+  View,
+} from 'react-native';
 
 import AppButton from './AppButton';
 import theme from '../constants/theme';
@@ -12,7 +18,14 @@ interface Props {
 }
 
 const ListItem = ({ item }: Props) => {
-  const { changeCheckedItem, deleteItem } = React.useContext(MainContext);
+  const { changeCheckedItem, deleteItem, editItem } =
+    React.useContext(MainContext);
+
+  const handleItemChange = (
+    e: NativeSyntheticEvent<TextInputChangeEventData>,
+  ) => {
+    editItem(item.id, e.nativeEvent.text);
+  };
   return (
     <View style={styles.listItem} key={item.id}>
       <AppButton
@@ -22,10 +35,15 @@ const ListItem = ({ item }: Props) => {
         text={item.checked ? '✔️' : '◯'}
         textStyle={styles.checkedIcon}
       />
-      <Text>{item.content}</Text>
+      <TextInput
+        value={item.content}
+        onChange={handleItemChange}
+        style={styles.textInput}
+      />
       <AppButton
         text="🗑️"
         style={styles.trashIcon}
+        textStyle={styles.trashIconText}
         onPress={() => {
           deleteItem(item.id);
         }}
@@ -41,9 +59,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: verticalScale(theme.spacing.spacing_12),
     paddingVertical: verticalScale(theme.spacing.spacing_8),
+    alignItems: 'center',
   },
-  checkedIcon: { marginRight: horizontalScale(theme.spacing.spacing_12) },
+  checkedIcon: {
+    marginRight: horizontalScale(theme.spacing.spacing_12),
+    fontSize: horizontalScale(theme.fontSize.fontSize_24),
+  },
   trashIcon: {
     marginLeft: 'auto',
+  },
+  trashIconText: {
+    fontSize: horizontalScale(theme.fontSize.fontSize_16),
+  },
+  textInput: {
+    flex: 1,
+    fontSize: horizontalScale(theme.fontSize.fontSize_20),
   },
 });
