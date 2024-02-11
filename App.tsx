@@ -52,6 +52,7 @@ export default function App() {
   //     ],
   //   });
   // }, []);
+
   const handleAddItemPress = () => {
     setAddModalIsOpen(true);
   };
@@ -70,8 +71,15 @@ export default function App() {
       value: newShoppingList,
     });
     if (storeDataInAsyncStorageResponse.status === 'SUCCESS') {
-      setShoppingList(newShoppingList);
-      closeAddModal();
+      const getDataFromAsyncStorageResponse = await getDataFromAsyncStorage({
+        key: 'shoppingList',
+      });
+      if (getDataFromAsyncStorageResponse.status === 'SUCCESS') {
+        if (getDataFromAsyncStorageResponse.data) {
+          setShoppingList(getDataFromAsyncStorageResponse.data);
+          closeAddModal();
+        }
+      }
     }
   };
   return (
