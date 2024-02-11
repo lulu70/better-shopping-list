@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { ItemWithId } from '../App';
+import { ItemWithId } from '../../App';
 
 type ResponseStatus = 'SUCCESS' | 'ERROR' | 'EMPTY';
 

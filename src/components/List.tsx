@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
 import ListItem from './ListItem';
-import { type ItemWithId } from '../App';
+import { type ItemWithId } from '../../App';
 import theme from '../constants/theme';
 import { verticalScale } from '../helpers/scaleHelpers';
 
