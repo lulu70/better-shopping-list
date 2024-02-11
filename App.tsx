@@ -37,7 +37,6 @@ export default function App() {
     getShoppingList();
   }, []);
 
-  
   // clear async storage
   // React.useEffect(() => {
   //   clearAsyncStorage();
