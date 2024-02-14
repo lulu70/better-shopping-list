@@ -1,11 +1,9 @@
 import React from 'react';
 import {
   Modal,
-  type NativeSyntheticEvent,
   SafeAreaView,
   StyleSheet,
   TextInput,
-  type TextInputChangeEventData,
   View,
   Pressable,
   Keyboard,
@@ -28,11 +26,6 @@ const AddModal = () => {
     }
   }, [addModalIsOpen]);
 
-  const handleInputChange = (
-    e: NativeSyntheticEvent<TextInputChangeEventData>,
-  ) => {
-    setInputValue(e.nativeEvent.text);
-  };
   const handleAddPress = () => {
     addItem(inputValue);
     setInputValue('');
@@ -57,7 +50,7 @@ const AddModal = () => {
               ref={inputRef}
               style={styles.textInput}
               value={inputValue}
-              onChange={handleInputChange}
+              onChangeText={setInputValue}
             />
             <AppButton
               text="Add"

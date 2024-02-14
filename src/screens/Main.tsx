@@ -12,6 +12,7 @@ import {
 import AddModal from '../components/AddModal';
 import AppButton from '../components/AppButton';
 import List from '../components/List';
+import Search from '../components/Search';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
@@ -36,6 +37,7 @@ const Main = () => {
       <Pressable style={styles.innerContainer} onPress={Keyboard.dismiss}>
         <StatusBar style="auto" />
         <Text style={styles.header}>Better Shopping List</Text>
+        <Search />
         <AppButton
           text="+"
           onPress={openAddModal}

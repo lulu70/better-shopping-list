@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  type NativeSyntheticEvent,
-  StyleSheet,
-  TextInput,
-  type TextInputChangeEventData,
-  View,
-} from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 import AppButton from './AppButton';
 import theme from '../constants/theme';
@@ -21,10 +15,8 @@ const ListItem = ({ item }: Props) => {
   const { changeCheckedItem, deleteItem, editItem } =
     React.useContext(MainContext);
 
-  const handleItemChange = (
-    e: NativeSyntheticEvent<TextInputChangeEventData>,
-  ) => {
-    editItem(item.id, e.nativeEvent.text);
+  const handleItemChange = (text: string) => {
+    editItem(item.id, text);
   };
   return (
     <View style={styles.listItem} key={item.id}>
@@ -37,7 +29,7 @@ const ListItem = ({ item }: Props) => {
       />
       <TextInput
         value={item.content}
-        onChange={handleItemChange}
+        onChangeText={handleItemChange}
         style={styles.textInput}
       />
       <AppButton
