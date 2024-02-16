@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   FlatList,
-  SafeAreaView,
+  LayoutAnimation,
   StyleSheet,
   TextInput,
   View,
@@ -27,6 +27,8 @@ const Search = () => {
         return false;
       }
     });
+
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setSearchResults(results);
   };
 

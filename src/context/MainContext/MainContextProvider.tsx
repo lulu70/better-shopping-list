@@ -1,4 +1,5 @@
 import React from 'react';
+import { LayoutAnimation } from 'react-native';
 
 import MainContext, { mainContextInitialState } from './MainContext';
 import {
@@ -32,7 +33,19 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     });
     if (getDataFromAsyncStorageResponse.status === 'SUCCESS') {
       if (getDataFromAsyncStorageResponse.data) {
-        setShoppingList(getDataFromAsyncStorageResponse.data);
+        const shoppingList = getDataFromAsyncStorageResponse.data;
+        const sortedShoppingList = [...shoppingList].sort((a, b) => {
+          if (a.checked && !b.checked) {
+            return 1;
+          }
+          if (!a.checked && b.checked) {
+            return -1;
+          }
+          return 0;
+        });
+
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        setShoppingList(sortedShoppingList);
       }
     }
   };
