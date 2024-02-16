@@ -1,6 +1,8 @@
 interface Theme {
   colors: {
     background: string;
+    background_secondary: string;
+    border: string;
     text_black: string;
   };
   fontSize: {
@@ -62,6 +64,8 @@ interface Theme {
 const theme: Theme = {
   colors: {
     background: 'blanchedalmond',
+    background_secondary: '#c1b9a4',
+    border: '#4c4034',
     text_black: 'black',
   },
   fontSize: {

@@ -50,6 +50,7 @@ const Search = () => {
       />
       <FlatList
         data={searchResults}
+        contentContainerStyle={styles.contentContainerStyle}
         renderItem={({ item }) => (
           <AppButton
             text={item.content}
@@ -75,9 +76,13 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(theme.spacing.spacing_12),
     borderRadius: 5,
   },
+  contentContainerStyle: {
+    backgroundColor: theme.colors.background_secondary,
+  },
   searchItem: {
-    backgroundColor: 'red',
-    padding: 10,
-    margin: 5,
+    paddingHorizontal: horizontalScale(theme.spacing.spacing_8),
+    paddingVertical: verticalScale(theme.spacing.spacing_10),
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.border,
   },
 });
