@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import AppButton from './AppButton';
-import AppInput from './AppTextInput';
+import AppTextInput from './AppTextInput';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
@@ -18,7 +18,6 @@ const AddModal = () => {
   const { addItem, addModalIsOpen, closeAddModal } =
     React.useContext(MainContext);
   const [inputValue, setInputValue] = React.useState('');
-
   const handleAddPress = () => {
     addItem(inputValue);
     setInputValue('');
@@ -42,7 +41,7 @@ const AddModal = () => {
               textStyle={styles.closeButtonText}
               onPress={handleClosePress}
             />
-            <AppInput
+            <AppTextInput
               value={inputValue}
               onChangeText={onChangeText}
               autoFocus

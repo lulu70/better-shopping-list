@@ -4,6 +4,7 @@ interface Theme {
     background_secondary: string;
     border: string;
     text_black: string;
+    text_disabled: string;
   };
   fontSize: {
     fontSize_10: number;
@@ -67,6 +68,7 @@ const theme: Theme = {
     background_secondary: '#c1b9a4',
     border: '#4c4034',
     text_black: 'black',
+    text_disabled: 'gray',
   },
   fontSize: {
     fontSize_10: 10,

@@ -4,6 +4,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import AppButton from './AppButton';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
+import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 import { type ItemWithId } from '../screens/Main';
 
@@ -14,6 +15,7 @@ interface Props {
 const ListItem = ({ item }: Props) => {
   const { changeCheckedItem, deleteItem, editItem } =
     React.useContext(MainContext);
+  const { isSearching } = React.useContext(SearchContext);
 
   const handleItemChange = (text: string) => {
     editItem(item.id, text);
@@ -26,11 +28,20 @@ const ListItem = ({ item }: Props) => {
         }}
         text={item.checked ? '✔️' : '◯'}
         textStyle={styles.checkedIcon}
+        disabled={isSearching}
       />
       <TextInput
         value={item.content}
         onChangeText={handleItemChange}
-        style={styles.textInput}
+        style={[
+          styles.textInput,
+          {
+            color: isSearching
+              ? theme.colors.text_disabled
+              : theme.colors.text_black,
+          },
+        ]}
+        editable={!isSearching}
       />
       <AppButton
         text="🗑️"
@@ -39,6 +50,7 @@ const ListItem = ({ item }: Props) => {
         onPress={() => {
           deleteItem(item.id);
         }}
+        disabled={isSearching}
       />
     </View>
   );

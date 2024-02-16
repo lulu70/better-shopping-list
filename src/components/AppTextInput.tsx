@@ -9,6 +9,8 @@ interface Props {
   onChangeText: (text: string) => void;
   autoFocus?: boolean;
   placeholder?: string;
+  onfocus?: () => void;
+  onBlur?: () => void;
 }
 
 const AppTextInput = ({
@@ -16,11 +18,15 @@ const AppTextInput = ({
   onChangeText,
   autoFocus = false,
   placeholder,
+  onfocus,
+  onBlur,
 }: Props) => {
   const inputRef = React.useRef<TextInput>(null);
+
   React.useEffect(() => {
     if (autoFocus) inputRef?.current?.focus();
   }, [autoFocus]);
+
   return (
     <TextInput
       ref={inputRef}
@@ -28,6 +34,8 @@ const AppTextInput = ({
       style={styles.textInput}
       value={value}
       onChangeText={onChangeText}
+      onFocus={onfocus}
+      onBlur={onBlur}
     />
   );
 };

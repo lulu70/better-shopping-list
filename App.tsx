@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform, UIManager } from 'react-native';
 
 import MainContextProvider from './src/context/MainContext/MainContextProvider';
+import SearchContextProvider from './src/context/SearchContext/SearchContextProvider';
 import Main from './src/screens/Main';
 
 if (
@@ -14,7 +15,9 @@ if (
 const App = () => {
   return (
     <MainContextProvider>
-      <Main />
+      <SearchContextProvider>
+        <Main />
+      </SearchContextProvider>
     </MainContextProvider>
   );
 };

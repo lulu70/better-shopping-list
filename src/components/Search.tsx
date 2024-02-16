@@ -1,18 +1,25 @@
 import React from 'react';
-import { FlatList, LayoutAnimation, StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  Keyboard,
+  LayoutAnimation,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import AppButton from './AppButton';
 import AppTextInput from './AppTextInput';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
+import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 import { ItemWithId } from '../screens/Main';
 
 const Search = () => {
   const { shoppingList, changeCheckedItem } = React.useContext(MainContext);
+  const { changeIsSearching } = React.useContext(SearchContext);
   const [inputValue, setInputValue] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<ItemWithId[]>([]);
-
   const handleInputChange = (text: string) => {
     setInputValue(text);
     const results = shoppingList.filter((item) => {
@@ -33,6 +40,14 @@ const Search = () => {
     }
     setSearchResults([]);
     setInputValue('');
+    Keyboard.dismiss();
+  };
+
+  const handleInputFocus = () => {
+    changeIsSearching(true);
+  };
+  const handleInputBlur = () => {
+    changeIsSearching(false);
   };
 
   return (
@@ -41,6 +56,8 @@ const Search = () => {
         value={inputValue}
         onChangeText={handleInputChange}
         placeholder="Search"
+        onfocus={handleInputFocus}
+        onBlur={handleInputBlur}
       />
       <FlatList
         data={searchResults}
@@ -55,6 +72,7 @@ const Search = () => {
           />
         )}
         keyExtractor={(item, index) => item.id || index.toString()}
+        keyboardShouldPersistTaps="always"
       />
     </View>
   );

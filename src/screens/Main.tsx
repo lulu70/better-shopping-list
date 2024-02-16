@@ -14,6 +14,7 @@ import List from '../components/List';
 import Search from '../components/Search';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
+import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 
 export interface Item {
@@ -26,6 +27,7 @@ export interface ItemWithId extends Item {
 
 const Main = () => {
   const { openAddModal } = React.useContext(MainContext);
+  const { isSearching } = React.useContext(SearchContext);
   // clear async storage
   // React.useEffect(() => {
   //   clearAsyncStorage();
@@ -42,6 +44,7 @@ const Main = () => {
           onPress={openAddModal}
           style={styles.addButton}
           textStyle={styles.addButtonText}
+          disabled={isSearching}
         />
         <List />
         <AddModal />
