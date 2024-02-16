@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  FlatList,
-  LayoutAnimation,
-  StyleSheet,
-  TextInput,
-  View,
-} from 'react-native';
+import { FlatList, LayoutAnimation, StyleSheet, View } from 'react-native';
 
 import AppButton from './AppButton';
+import AppTextInput from './AppTextInput';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
@@ -42,11 +37,10 @@ const Search = () => {
 
   return (
     <View>
-      <TextInput
-        placeholder="Search"
+      <AppTextInput
         value={inputValue}
-        style={styles.textInput}
         onChangeText={handleInputChange}
+        placeholder="Search"
       />
       <FlatList
         data={searchResults}
@@ -69,13 +63,6 @@ const Search = () => {
 export default Search;
 
 const styles = StyleSheet.create({
-  textInput: {
-    backgroundColor: 'white',
-    paddingHorizontal: horizontalScale(theme.spacing.spacing_10),
-    paddingVertical: verticalScale(theme.spacing.spacing_10),
-    marginTop: verticalScale(theme.spacing.spacing_12),
-    borderRadius: 5,
-  },
   contentContainerStyle: {
     backgroundColor: theme.colors.background_secondary,
   },

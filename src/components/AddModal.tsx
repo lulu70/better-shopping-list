@@ -3,13 +3,13 @@ import {
   Modal,
   SafeAreaView,
   StyleSheet,
-  TextInput,
   View,
   Pressable,
   Keyboard,
 } from 'react-native';
 
 import AppButton from './AppButton';
+import AppInput from './AppTextInput';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
@@ -17,14 +17,7 @@ import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 const AddModal = () => {
   const { addItem, addModalIsOpen, closeAddModal } =
     React.useContext(MainContext);
-  const inputRef = React.useRef<TextInput>(null);
   const [inputValue, setInputValue] = React.useState('');
-
-  React.useEffect(() => {
-    if (addModalIsOpen) {
-      inputRef?.current?.focus();
-    }
-  }, [addModalIsOpen]);
 
   const handleAddPress = () => {
     addItem(inputValue);
@@ -34,6 +27,9 @@ const AddModal = () => {
   const handleClosePress = () => {
     setInputValue('');
     closeAddModal();
+  };
+  const onChangeText = (text: string) => {
+    setInputValue(text);
   };
   return (
     <Modal visible={addModalIsOpen} animationType="slide">
@@ -46,11 +42,11 @@ const AddModal = () => {
               textStyle={styles.closeButtonText}
               onPress={handleClosePress}
             />
-            <TextInput
-              ref={inputRef}
-              style={styles.textInput}
+            <AppInput
               value={inputValue}
-              onChangeText={setInputValue}
+              onChangeText={onChangeText}
+              autoFocus
+              placeholder="Add an item here"
             />
             <AppButton
               text="Add"
