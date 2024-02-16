@@ -11,7 +11,7 @@ const List = () => {
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}
+      contentContainerStyle={styles.contentContainerStyle}
       data={shoppingList}
       renderItem={({ item }) => <ListItem item={item} />}
       keyExtractor={(item, index) => item.id || index.toString()}
@@ -22,7 +22,8 @@ const List = () => {
 export default List;
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainerStyle: {
     marginTop: verticalScale(theme.spacing.spacing_10),
+    height: '100%',
   },
 });

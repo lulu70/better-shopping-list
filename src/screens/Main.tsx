@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 
 import AddModal from '../components/AddModal';
