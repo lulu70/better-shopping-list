@@ -1,26 +1,22 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import AppButton from './AppButton';
 import ListItem from './ListItem';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import { verticalScale } from '../helpers/scaleHelpers';
 
 const List = () => {
-  const { shoppingList, openAddModal } = React.useContext(MainContext);
+  const { shoppingList } = React.useContext(MainContext);
+  const { bottom } = useSafeAreaInsets();
   return (
     <FlatList
-      ListFooterComponent={
-        <AppButton
-          text="+"
-          style={styles.addButton}
-          textStyle={styles.addButtonText}
-          onPress={openAddModal}
-        />
-      }
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.contentContainerStyle}
+      contentContainerStyle={[
+        styles.contentContainerStyle,
+        { paddingBottom: bottom + verticalScale(theme.spacing.spacing_96) },
+      ]}
       data={shoppingList}
       renderItem={({ item }) => <ListItem item={item} />}
       keyExtractor={(item, index) => item.id || index.toString()}
@@ -34,13 +30,5 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     marginTop: verticalScale(theme.spacing.spacing_10),
     minHeight: '100%',
-  },
-  addButton: {
-    height: '100%',
-    minHeight: verticalScale(theme.spacing.spacing_128),
-  },
-  addButtonText: {
-    fontSize: theme.fontSize.fontSize_32,
-    fontWeight: theme.fontWeight.bold,
   },
 });

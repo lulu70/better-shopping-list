@@ -1,15 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {
-  Keyboard,
-  Pressable,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AddModal from '../components/AddModal';
 import AppButton from '../components/AppButton';
+import AppTabsController from '../components/AppTabsController';
 import List from '../components/List';
 import Search from '../components/Search';
 import theme from '../constants/theme';
@@ -43,8 +39,9 @@ const Main = () => {
           <Search />
         </View>
         <List />
-        <AddModal />
       </Pressable>
+      <AppTabsController />
+      <AddModal />
     </SafeAreaView>
   );
 };
