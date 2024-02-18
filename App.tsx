@@ -1,5 +1,6 @@
 import React from 'react';
 import { Platform, UIManager } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import MainContextProvider from './src/context/MainContext/MainContextProvider';
 import SearchContextProvider from './src/context/SearchContext/SearchContextProvider';
@@ -14,11 +15,13 @@ if (
 
 const App = () => {
   return (
-    <MainContextProvider>
-      <SearchContextProvider>
-        <Main />
-      </SearchContextProvider>
-    </MainContextProvider>
+    <SafeAreaProvider>
+      <MainContextProvider>
+        <SearchContextProvider>
+          <Main />
+        </SearchContextProvider>
+      </MainContextProvider>
+    </SafeAreaProvider>
   );
 };
 
