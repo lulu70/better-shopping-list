@@ -34,11 +34,14 @@ const Search = () => {
     setSearchResults(results);
   };
 
-  const handleSearchItemPress = (item: ItemWithId) => {
-    changeCheckedItem(item.id);
+  const resetSearchState = () => {
     setSearchResults([]);
     setInputValue('');
     Keyboard.dismiss();
+  };
+  const handleSearchItemPress = (item: ItemWithId) => {
+    changeCheckedItem(item.id);
+    resetSearchState();
   };
 
   const handleInputFocus = () => {
@@ -46,6 +49,12 @@ const Search = () => {
   };
   const handleInputBlur = () => {
     changeIsSearching(false);
+  };
+
+  const handleRightIconPress = () => {
+    if (isSearching && inputValue.length > 0) {
+      resetSearchState();
+    }
   };
 
   return (
@@ -57,13 +66,7 @@ const Search = () => {
         onfocus={handleInputFocus}
         onBlur={handleInputBlur}
         rightIcon={isSearching && inputValue.length > 0 ? 'X' : '🔍'}
-        onRightIconPress={() => {
-          if (isSearching && inputValue.length > 0) {
-            setSearchResults([]);
-            setInputValue('');
-            Keyboard.dismiss();
-          }
-        }}
+        onRightIconPress={handleRightIconPress}
       />
       <FlatList
         data={searchResults}
