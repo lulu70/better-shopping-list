@@ -17,6 +17,7 @@ interface Theme {
     fontSize_24: number;
     fontSize_28: number;
     fontSize_32: number;
+    fontSize_128: number;
   };
   spacing: {
     spacing_1: number;
@@ -81,6 +82,7 @@ const theme: Theme = {
     fontSize_24: 24,
     fontSize_28: 28,
     fontSize_32: 32,
+    fontSize_128: 128,
   },
   spacing: {
     spacing_1: 1,

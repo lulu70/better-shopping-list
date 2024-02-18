@@ -22,8 +22,9 @@ const List = () => {
         if (item.id === 'addButton')
           return (
             <AppButton
-              text=""
+              text="+"
               style={styles.addButton}
+              textStyle={styles.addButtonText}
               onPress={openAddModal}
             />
           );
@@ -43,5 +44,12 @@ const styles = StyleSheet.create({
   },
   addButton: {
     height: '100%',
+    backgroundColor: 'red',
+    minHeight: verticalScale(theme.spacing.spacing_40),
+    justifyContent: 'center',
+  },
+  addButtonText: {
+    fontSize: theme.fontSize.fontSize_128,
+    alignSelf: 'center',
   },
 });
