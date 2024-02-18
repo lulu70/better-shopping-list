@@ -33,11 +33,11 @@ export default List;
 const styles = StyleSheet.create({
   contentContainerStyle: {
     marginTop: verticalScale(theme.spacing.spacing_10),
-    height: '100%',
+    minHeight: '100%',
   },
   addButton: {
     height: '100%',
-    minHeight: verticalScale(theme.spacing.spacing_40),
+    minHeight: verticalScale(theme.spacing.spacing_128),
   },
   addButtonText: {
     fontSize: theme.fontSize.fontSize_32,
