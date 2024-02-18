@@ -15,7 +15,7 @@ const List = () => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={[
         styles.contentContainerStyle,
-        { paddingBottom: bottom + verticalScale(theme.spacing.spacing_96) },
+        { paddingBottom: bottom + verticalScale(theme.spacing.spacing_256) },
       ]}
       data={shoppingList}
       renderItem={({ item }) => <ListItem item={item} />}

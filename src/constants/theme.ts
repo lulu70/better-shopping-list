@@ -53,6 +53,7 @@ interface Theme {
     spacing_94: number;
     spacing_96: number;
     spacing_128: number;
+    spacing_256: number;
   };
   fontWeight: {
     fontWeight_100: '100';
@@ -119,6 +120,7 @@ const theme: Theme = {
     spacing_94: 94,
     spacing_96: 96,
     spacing_128: 128,
+    spacing_256: 256,
   },
   fontWeight: {
     fontWeight_100: '100',

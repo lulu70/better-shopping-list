@@ -4,13 +4,10 @@ import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AddModal from '../components/AddModal';
-import AppButton from '../components/AppButton';
 import AppTabsController from '../components/AppTabsController';
 import List from '../components/List';
 import Search from '../components/Search';
 import theme from '../constants/theme';
-import MainContext from '../context/MainContext/MainContext';
-import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 
 export interface Item {
@@ -22,20 +19,11 @@ export interface ItemWithId extends Item {
 }
 
 const Main = () => {
-  const { openAddModal } = React.useContext(MainContext);
-  const { isSearching } = React.useContext(SearchContext);
-
   return (
     <SafeAreaView style={styles.container}>
       <Pressable style={styles.innerContainer} onPress={Keyboard.dismiss}>
         <StatusBar style="auto" />
         <View style={styles.headerContainer}>
-          <AppButton
-            text="+"
-            onPress={openAddModal}
-            textStyle={styles.addButtonText}
-            disabled={isSearching}
-          />
           <Search />
         </View>
         <List />
