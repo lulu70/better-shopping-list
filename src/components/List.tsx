@@ -9,27 +9,20 @@ import { verticalScale } from '../helpers/scaleHelpers';
 
 const List = () => {
   const { shoppingList, openAddModal } = React.useContext(MainContext);
-  const shoppingListWithAddButton = [
-    ...shoppingList,
-    { id: 'addButton', content: '', checked: false },
-  ];
   return (
     <FlatList
+      ListFooterComponent={
+        <AppButton
+          text="+"
+          style={styles.addButton}
+          textStyle={styles.addButtonText}
+          onPress={openAddModal}
+        />
+      }
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.contentContainerStyle}
-      data={shoppingListWithAddButton}
-      renderItem={({ item }) => {
-        if (item.id === 'addButton')
-          return (
-            <AppButton
-              text="+"
-              style={styles.addButton}
-              textStyle={styles.addButtonText}
-              onPress={openAddModal}
-            />
-          );
-        return <ListItem item={item} />;
-      }}
+      data={shoppingList}
+      renderItem={({ item }) => <ListItem item={item} />}
       keyExtractor={(item, index) => item.id || index.toString()}
     />
   );
