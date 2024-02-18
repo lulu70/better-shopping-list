@@ -49,6 +49,7 @@ const Search = () => {
   };
   const handleInputBlur = () => {
     changeIsSearching(false);
+    resetSearchState();
   };
 
   const handleRightIconPress = () => {
