@@ -28,10 +28,6 @@ export interface ItemWithId extends Item {
 const Main = () => {
   const { openAddModal } = React.useContext(MainContext);
   const { isSearching } = React.useContext(SearchContext);
-  // clear async storage
-  // React.useEffect(() => {
-  //   clearAsyncStorage();
-  // }, []);
 
   return (
     <SafeAreaView style={styles.container}>

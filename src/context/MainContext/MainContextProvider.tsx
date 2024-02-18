@@ -6,9 +6,15 @@ import {
   getDataFromAsyncStorage,
   storeDataInAsyncStorage,
 } from '../../helpers/asyncStorageHelpers';
+// import useAddFakeItems from '../../hooks/useAddFakeItems';
+// import useClearStorage from '../../hooks/useClearStorage';
 import { type ItemWithId } from '../../screens/Main';
 
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
+  // useClearStorage();
+  // useAddFakeItems({
+  //   updateShoppingListOnAsyncStorage,
+  // });
   const [shoppingList, setShoppingList] = React.useState<ItemWithId[]>(
     mainContextInitialState.shoppingList,
   );
@@ -50,9 +56,9 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const updateShoppingListOnAsyncStorage = async (
+  async function updateShoppingListOnAsyncStorage(
     newShoppingList: ItemWithId[],
-  ) => {
+  ) {
     const storeDataInAsyncStorageResponse = await storeDataInAsyncStorage({
       key: 'shoppingList',
       value: newShoppingList,
@@ -60,7 +66,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     if (storeDataInAsyncStorageResponse.status === 'SUCCESS') {
       getShoppingList();
     }
-  };
+  }
 
   const addItem = async (value: string) => {
     const item = {
