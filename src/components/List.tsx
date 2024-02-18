@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
   addButton: {
     height: '100%',
     minHeight: verticalScale(theme.spacing.spacing_40),
-    justifyContent: 'center',
   },
   addButtonText: {
-    fontSize: theme.fontSize.fontSize_128,
-    alignSelf: 'center',
+    fontSize: theme.fontSize.fontSize_32,
+    fontWeight: theme.fontWeight.bold,
   },
 });
