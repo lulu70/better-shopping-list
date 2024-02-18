@@ -18,22 +18,31 @@ const AddModal = () => {
   const { addItem, addModalIsOpen, closeAddModal } =
     React.useContext(MainContext);
   const [inputValue, setInputValue] = React.useState('');
-  const handleAddPress = () => {
-    addItem(inputValue);
+
+  const resetAddModalState = () => {
     setInputValue('');
     closeAddModal();
   };
+  const handleAddPress = () => {
+    addItem(inputValue);
+    resetAddModalState();
+  };
   const handleClosePress = () => {
-    setInputValue('');
-    closeAddModal();
+    resetAddModalState();
   };
   const onChangeText = (text: string) => {
     setInputValue(text);
   };
+  const handleOutsidePress = () => {
+    if (!inputValue) {
+      resetAddModalState();
+      Keyboard.dismiss();
+    }
+  };
   return (
-    <Modal visible={addModalIsOpen} animationType="slide">
+    <Modal visible={addModalIsOpen} animationType="slide" transparent>
       <SafeAreaView style={styles.container}>
-        <Pressable onPress={Keyboard.dismiss} style={styles.pressable}>
+        <Pressable onPress={handleOutsidePress} style={styles.pressable}>
           <View style={styles.innerContainer}>
             <AppButton
               text="X"
@@ -44,11 +53,12 @@ const AddModal = () => {
             <AppTextInput
               value={inputValue}
               onChangeText={onChangeText}
+              style={styles.textInput}
               autoFocus
               placeholder="Add an item here"
             />
             <AppButton
-              text="Add"
+              text="+"
               onPress={handleAddPress}
               style={styles.addButton}
               textStyle={styles.addButtonText}
@@ -65,23 +75,20 @@ export default AddModal;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.background,
     flex: 1,
   },
   pressable: {
     flex: 1,
   },
   innerContainer: {
-    paddingHorizontal: horizontalScale(theme.spacing.spacing_16),
+    backgroundColor: theme.colors.background_secondary,
+    height: verticalScale(theme.spacing.spacing_256),
+    marginTop: verticalScale(theme.spacing.spacing_64),
+    marginHorizontal: horizontalScale(theme.spacing.spacing_16),
+    zIndex: 10,
   },
   textInput: {
-    backgroundColor: 'white',
-    paddingHorizontal: horizontalScale(theme.spacing.spacing_16),
-    paddingVertical: verticalScale(theme.spacing.spacing_16),
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: theme.spacing.spacing_4,
-    marginTop: verticalScale(theme.spacing.spacing_12),
+    marginHorizontal: horizontalScale(theme.spacing.spacing_16),
   },
   closeButton: {
     alignSelf: 'flex-end',
@@ -92,10 +99,11 @@ const styles = StyleSheet.create({
   },
   addButton: {
     marginTop: verticalScale(theme.spacing.spacing_16),
-    alignSelf: 'center',
+    flex: 1,
   },
   addButtonText: {
-    fontSize: horizontalScale(theme.fontSize.fontSize_24),
-    fontWeight: theme.fontWeight.fontWeight_500,
+    textAlign: 'center',
+    fontSize: horizontalScale(theme.fontSize.fontSize_32),
+    fontWeight: theme.fontWeight.bold,
   },
 });

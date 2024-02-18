@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput, TextStyle } from 'react-native';
 
 import AppButton from './AppButton';
 import theme from '../constants/theme';
@@ -14,6 +14,7 @@ interface Props {
   onBlur?: () => void;
   rightIcon?: string;
   onRightIconPress?: () => void;
+  style?: TextStyle;
 }
 
 const AppTextInput = ({
@@ -25,6 +26,8 @@ const AppTextInput = ({
   onBlur,
   rightIcon,
   onRightIconPress,
+
+  style,
 }: Props) => {
   const inputRef = React.useRef<TextInput>(null);
 
@@ -37,7 +40,7 @@ const AppTextInput = ({
       <TextInput
         ref={inputRef}
         placeholder={placeholder}
-        style={styles.textInput}
+        style={[styles.textInput, style]}
         value={value}
         onChangeText={onChangeText}
         onFocus={onfocus}
