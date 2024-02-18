@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
   },
   addButton: {
     height: '100%',
-    backgroundColor: 'red',
     minHeight: verticalScale(theme.spacing.spacing_40),
     justifyContent: 'center',
   },
