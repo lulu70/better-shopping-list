@@ -17,7 +17,7 @@ import { ItemWithId } from '../screens/Main';
 
 const Search = () => {
   const { shoppingList, changeCheckedItem } = React.useContext(MainContext);
-  const { changeIsSearching } = React.useContext(SearchContext);
+  const { changeIsSearching, isSearching } = React.useContext(SearchContext);
   const [inputValue, setInputValue] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<ItemWithId[]>([]);
   const handleInputChange = (text: string) => {
@@ -35,9 +35,7 @@ const Search = () => {
   };
 
   const handleSearchItemPress = (item: ItemWithId) => {
-    if (item.checked) {
-      changeCheckedItem(item.id);
-    }
+    changeCheckedItem(item.id);
     setSearchResults([]);
     setInputValue('');
     Keyboard.dismiss();
@@ -51,13 +49,21 @@ const Search = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <AppTextInput
         value={inputValue}
         onChangeText={handleInputChange}
         placeholder="Search"
         onfocus={handleInputFocus}
         onBlur={handleInputBlur}
+        rightIcon={isSearching && inputValue.length > 0 ? 'X' : '🔍'}
+        onRightIconPress={() => {
+          if (isSearching && inputValue.length > 0) {
+            setSearchResults([]);
+            setInputValue('');
+            Keyboard.dismiss();
+          }
+        }}
       />
       <FlatList
         data={searchResults}
@@ -81,6 +87,9 @@ const Search = () => {
 export default Search;
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+  },
   contentContainerStyle: {
     backgroundColor: theme.colors.background_secondary,
   },

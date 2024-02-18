@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 
+import AppButton from './AppButton';
 import theme from '../constants/theme';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 
@@ -11,6 +12,8 @@ interface Props {
   placeholder?: string;
   onfocus?: () => void;
   onBlur?: () => void;
+  rightIcon?: string;
+  onRightIconPress?: () => void;
 }
 
 const AppTextInput = ({
@@ -20,6 +23,8 @@ const AppTextInput = ({
   placeholder,
   onfocus,
   onBlur,
+  rightIcon,
+  onRightIconPress,
 }: Props) => {
   const inputRef = React.useRef<TextInput>(null);
 
@@ -28,15 +33,24 @@ const AppTextInput = ({
   }, [autoFocus]);
 
   return (
-    <TextInput
-      ref={inputRef}
-      placeholder={placeholder}
-      style={styles.textInput}
-      value={value}
-      onChangeText={onChangeText}
-      onFocus={onfocus}
-      onBlur={onBlur}
-    />
+    <>
+      <TextInput
+        ref={inputRef}
+        placeholder={placeholder}
+        style={styles.textInput}
+        value={value}
+        onChangeText={onChangeText}
+        onFocus={onfocus}
+        onBlur={onBlur}
+      />
+      {rightIcon && onRightIconPress && (
+        <AppButton
+          text={rightIcon}
+          onPress={onRightIconPress}
+          style={styles.rightButton}
+        />
+      )}
+    </>
   );
 };
 
@@ -47,7 +61,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: horizontalScale(theme.spacing.spacing_16),
     paddingVertical: verticalScale(theme.spacing.spacing_12),
-    marginTop: verticalScale(theme.spacing.spacing_12),
     fontSize: horizontalScale(theme.fontSize.fontSize_16),
+  },
+  rightButton: {
+    position: 'absolute',
+    right: horizontalScale(theme.spacing.spacing_4),
+    top: 0,
+    paddingVertical: verticalScale(theme.spacing.spacing_16),
   },
 });

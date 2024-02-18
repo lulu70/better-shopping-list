@@ -5,7 +5,7 @@ import {
   Pressable,
   SafeAreaView,
   StyleSheet,
-  Text,
+  View,
 } from 'react-native';
 
 import AddModal from '../components/AddModal';
@@ -37,15 +37,15 @@ const Main = () => {
     <SafeAreaView style={styles.container}>
       <Pressable style={styles.innerContainer} onPress={Keyboard.dismiss}>
         <StatusBar style="auto" />
-        <Text style={styles.header}>Better Shopping List</Text>
-        <Search />
-        <AppButton
-          text="+"
-          onPress={openAddModal}
-          style={styles.addButton}
-          textStyle={styles.addButtonText}
-          disabled={isSearching}
-        />
+        <View style={styles.headerContainer}>
+          <AppButton
+            text="+"
+            onPress={openAddModal}
+            textStyle={styles.addButtonText}
+            disabled={isSearching}
+          />
+          <Search />
+        </View>
         <List />
         <AddModal />
       </Pressable>
@@ -63,14 +63,10 @@ const styles = StyleSheet.create({
   innerContainer: {
     paddingHorizontal: horizontalScale(theme.spacing.spacing_20),
   },
-  header: {
-    fontSize: horizontalScale(theme.fontSize.fontSize_18),
-    fontWeight: theme.fontWeight.bold,
-    marginTop: verticalScale(theme.spacing.spacing_20),
-    textAlign: 'center',
-  },
-  addButton: {
-    alignSelf: 'flex-end',
+  headerContainer: {
+    flexDirection: 'row',
+    gap: horizontalScale(theme.spacing.spacing_12),
+    marginTop: verticalScale(theme.spacing.spacing_12),
   },
   addButtonText: {
     fontSize: horizontalScale(theme.fontSize.fontSize_32),
