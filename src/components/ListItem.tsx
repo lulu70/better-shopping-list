@@ -16,9 +16,15 @@ const ListItem = ({ item }: Props) => {
   const { changeCheckedItem, deleteItem, editItem } =
     React.useContext(MainContext);
   const { isSearching } = React.useContext(SearchContext);
+  const [itemContent, setItemContent] = React.useState(item.content);
 
   const handleItemChange = (text: string) => {
-    editItem(item.id, text);
+    setItemContent(text);
+  };
+  const handleInputBlur = () => {
+    if (itemContent !== item.content) {
+      editItem(item.id, itemContent);
+    }
   };
   return (
     <View style={styles.listItem} key={item.id}>
@@ -31,7 +37,7 @@ const ListItem = ({ item }: Props) => {
         disabled={isSearching}
       />
       <TextInput
-        value={item.content}
+        value={itemContent}
         onChangeText={handleItemChange}
         style={[
           styles.textInput,
@@ -42,6 +48,7 @@ const ListItem = ({ item }: Props) => {
           },
         ]}
         editable={!isSearching}
+        onBlur={handleInputBlur}
       />
       <AppButton
         text="🗑️"

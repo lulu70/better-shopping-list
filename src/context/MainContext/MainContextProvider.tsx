@@ -40,7 +40,17 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     if (getDataFromAsyncStorageResponse.status === 'SUCCESS') {
       if (getDataFromAsyncStorageResponse.data) {
         const shoppingList = getDataFromAsyncStorageResponse.data;
-        const sortedShoppingList = [...shoppingList].sort((a, b) => {
+        const sortedByUpdatedAtShoppingList = [...shoppingList].sort(
+          (a: ItemWithId, b: ItemWithId) => {
+            if (a.updatedAt && b.updatedAt) {
+              return b.updatedAt - a.updatedAt;
+            }
+            return 0;
+          },
+        );
+        const sortedByCheckedShoppingList = [
+          ...sortedByUpdatedAtShoppingList,
+        ].sort((a, b) => {
           if (a.checked && !b.checked) {
             return 1;
           }
@@ -51,7 +61,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         });
 
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-        setShoppingList(sortedShoppingList);
+        setShoppingList(sortedByCheckedShoppingList);
       }
     }
   };
@@ -70,9 +80,10 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addItem = async (value: string) => {
     const item = {
-      id: `${Date.now()}`,
+      id: `${shoppingList.length + 1}`,
       content: value,
       checked: false,
+      updatedAt: Date.now(),
     };
     const newShoppingList = [...shoppingList, item];
     updateShoppingListOnAsyncStorage(newShoppingList);
@@ -84,6 +95,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         return {
           ...item,
           content: value,
+          updatedAt: Date.now(),
         };
       }
       return item;
@@ -97,6 +109,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
         return {
           ...item,
           checked: !item.checked,
+          updatedAt: Date.now(),
         };
       }
       return item;

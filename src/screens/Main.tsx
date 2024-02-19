@@ -13,6 +13,7 @@ import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 export interface Item {
   content: string;
   checked: boolean;
+  updatedAt: number;
 }
 export interface ItemWithId extends Item {
   id: string | null;
