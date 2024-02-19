@@ -24,32 +24,22 @@ const AddModal = () => {
     closeAddModal();
   };
   const handleAddPress = () => {
+    if (!inputValue) return;
     addItem(inputValue);
-    resetAddModalState();
-  };
-  const handleClosePress = () => {
     resetAddModalState();
   };
   const onChangeText = (text: string) => {
     setInputValue(text);
   };
   const handleOutsidePress = () => {
-    if (!inputValue) {
-      resetAddModalState();
-      Keyboard.dismiss();
-    }
+    resetAddModalState();
+    Keyboard.dismiss();
   };
   return (
     <Modal visible={addModalIsOpen} animationType="slide" transparent>
       <SafeAreaView style={styles.container}>
         <Pressable onPress={handleOutsidePress} style={styles.pressable}>
           <View style={styles.innerContainer}>
-            <AppButton
-              text="X"
-              style={styles.closeButton}
-              textStyle={styles.closeButtonText}
-              onPress={handleClosePress}
-            />
             <AppTextInput
               value={inputValue}
               onChangeText={onChangeText}
@@ -61,8 +51,11 @@ const AddModal = () => {
               text="+"
               onPress={handleAddPress}
               style={styles.addButton}
-              textStyle={styles.addButtonText}
-              disabled={!inputValue}
+              textStyle={{
+                ...styles.addButtonText,
+                opacity: inputValue ? 1 : 0.2,
+              }}
+              pressedOpacity={1}
             />
           </View>
         </Pressable>
@@ -83,13 +76,12 @@ const styles = StyleSheet.create({
   innerContainer: {
     backgroundColor: theme.colors.background_secondary,
     height: verticalScale(theme.spacing.spacing_256),
-    marginTop: verticalScale(theme.spacing.spacing_64),
+    marginTop: verticalScale(theme.spacing.spacing_96),
     marginHorizontal: horizontalScale(theme.spacing.spacing_16),
-    zIndex: 10,
+    paddingHorizontal: horizontalScale(theme.spacing.spacing_12),
+    paddingVertical: verticalScale(theme.spacing.spacing_12),
   },
-  textInput: {
-    marginHorizontal: horizontalScale(theme.spacing.spacing_16),
-  },
+  textInput: {},
   closeButton: {
     alignSelf: 'flex-end',
   },
