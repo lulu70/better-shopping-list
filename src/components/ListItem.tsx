@@ -49,6 +49,7 @@ const ListItem = ({ item }: Props) => {
         ]}
         editable={!isSearching}
         onBlur={handleInputBlur}
+        multiline
       />
       <AppButton
         text="🗑️"
