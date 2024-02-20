@@ -12,9 +12,11 @@ import { type ItemWithId } from '../../screens/Main';
 
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
   // useClearStorage();
+
   // useAddFakeItems({
   //   updateShoppingListOnAsyncStorage,
   // });
+
   const [shoppingList, setShoppingList] = React.useState<ItemWithId[]>(
     mainContextInitialState.shoppingList,
   );
