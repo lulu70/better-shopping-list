@@ -82,7 +82,7 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addItem = async (value: string) => {
     const item = {
-      id: `${shoppingList.length + 1}`,
+      id: Date.now().toString(),
       content: value,
       checked: false,
       updatedAt: Date.now(),
