@@ -74,17 +74,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   checkedIcon: {
-    marginRight: horizontalScale(theme.spacing.spacing_12),
     fontSize: horizontalScale(theme.fontSize.fontSize_24),
   },
-  trashIcon: {
-    marginLeft: 'auto',
-  },
+  trashIcon: {},
   trashIconText: {
     fontSize: horizontalScale(theme.fontSize.fontSize_16),
   },
   textInput: {
     flex: 1,
     fontSize: horizontalScale(theme.fontSize.fontSize_20),
+    marginHorizontal: horizontalScale(theme.spacing.spacing_12),
   },
 });

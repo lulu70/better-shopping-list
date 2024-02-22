@@ -20,6 +20,7 @@ const Search = () => {
   const { changeIsSearching, isSearching } = React.useContext(SearchContext);
   const [inputValue, setInputValue] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<ItemWithId[]>([]);
+
   const handleInputChange = (text: string) => {
     setInputValue(text);
     const results = shoppingList.filter((item) => {
@@ -69,21 +70,23 @@ const Search = () => {
         rightIcon={isSearching && inputValue.length > 0 ? 'X' : '🔍'}
         onRightIconPress={handleRightIconPress}
       />
-      <FlatList
-        data={searchResults}
-        contentContainerStyle={styles.contentContainerStyle}
-        renderItem={({ item }) => (
-          <AppButton
-            text={item.content}
-            style={styles.searchItem}
-            onPress={() => {
-              handleSearchItemPress(item);
-            }}
-          />
-        )}
-        keyExtractor={(item, index) => item.id || index.toString()}
-        keyboardShouldPersistTaps="always"
-      />
+      {searchResults.length > 0 && (
+        <FlatList
+          data={searchResults}
+          contentContainerStyle={styles.contentContainerStyle}
+          renderItem={({ item }) => (
+            <AppButton
+              text={item.content}
+              style={styles.searchItem}
+              onPress={() => {
+                handleSearchItemPress(item);
+              }}
+            />
+          )}
+          keyExtractor={(item, index) => item.id || index.toString()}
+          keyboardShouldPersistTaps="always"
+        />
+      )}
     </View>
   );
 };
@@ -95,11 +98,13 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   contentContainerStyle: {
-    backgroundColor: theme.colors.background_secondary,
+    paddingBottom: verticalScale(theme.spacing.spacing_2048),
   },
   searchItem: {
+    backgroundColor: theme.colors.background_secondary,
     paddingHorizontal: horizontalScale(theme.spacing.spacing_8),
-    paddingVertical: verticalScale(theme.spacing.spacing_10),
+    // vertical scale doesn't work here
+    paddingVertical: horizontalScale(theme.spacing.spacing_20),
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
   },
