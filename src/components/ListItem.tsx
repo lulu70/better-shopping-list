@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
 import AppButton from './AppButton';
+import CheckIcon from '../Icons/CheckIcon';
+import RadioButtonIcon from '../Icons/RadioButtonIcon';
+import TrashIcon from '../Icons/TrashIcon';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import SearchContext from '../context/SearchContext/SearchContext';
@@ -32,10 +35,10 @@ const ListItem = ({ item }: Props) => {
         onPress={() => {
           changeCheckedItem(item.id);
         }}
-        text={item.checked ? '✔️' : '◯'}
-        textStyle={styles.checkedIcon}
         disabled={isSearching}
-      />
+      >
+        {item.checked ? <CheckIcon /> : <RadioButtonIcon />}
+      </AppButton>
       <TextInput
         value={itemContent}
         onChangeText={handleItemChange}
@@ -52,14 +55,13 @@ const ListItem = ({ item }: Props) => {
         multiline
       />
       <AppButton
-        text="🗑️"
-        style={styles.trashIcon}
-        textStyle={styles.trashIconText}
         onPress={() => {
           deleteItem(item.id);
         }}
         disabled={isSearching}
-      />
+      >
+        <TrashIcon />
+      </AppButton>
     </View>
   );
 };
@@ -73,16 +75,10 @@ const styles = StyleSheet.create({
     paddingVertical: verticalScale(theme.spacing.spacing_8),
     alignItems: 'center',
   },
-  checkedIcon: {
-    fontSize: horizontalScale(theme.fontSize.fontSize_24),
-  },
-  trashIcon: {},
-  trashIconText: {
-    fontSize: horizontalScale(theme.fontSize.fontSize_16),
-  },
   textInput: {
     flex: 1,
-    fontSize: horizontalScale(theme.fontSize.fontSize_20),
+    fontSize: horizontalScale(theme.fontSize.fontSize_18),
+    lineHeight: verticalScale(theme.fontSize.fontSize_20),
     marginHorizontal: horizontalScale(theme.spacing.spacing_12),
   },
 });

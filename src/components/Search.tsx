@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  FlatList,
-  Keyboard,
-  LayoutAnimation,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { FlatList, Keyboard, StyleSheet, View } from 'react-native';
 
 import AppButton from './AppButton';
 import AppTextInput from './AppTextInput';
+import CloseIcon from '../Icons/CloseIcon';
+import SearchIcon from '../Icons/SearchIcon';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import SearchContext from '../context/SearchContext/SearchContext';
@@ -31,7 +27,6 @@ const Search = () => {
       }
     });
 
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setSearchResults(results);
   };
 
@@ -67,7 +62,9 @@ const Search = () => {
         placeholder="Search"
         onfocus={handleInputFocus}
         onBlur={handleInputBlur}
-        rightIcon={isSearching && inputValue.length > 0 ? 'X' : '🔍'}
+        rightIcon={
+          isSearching && inputValue.length > 0 ? <CloseIcon /> : <SearchIcon />
+        }
         onRightIconPress={handleRightIconPress}
       />
       {searchResults.length > 0 && (

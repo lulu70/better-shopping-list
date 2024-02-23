@@ -24,7 +24,7 @@ const AppButton = ({
       hitSlop={10}
       style={({ pressed }) => [
         {
-          opacity: pressed ? pressedOpacity : 1,
+          opacity: pressed ? pressedOpacity : disabled ? 0.2 : 1,
         },
         { ...style },
       ]}

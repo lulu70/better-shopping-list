@@ -10,6 +10,7 @@ import {
 
 import AppButton from './AppButton';
 import AppTextInput from './AppTextInput';
+import AddIcon from '../Icons/AddIcons';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
@@ -43,20 +44,16 @@ const AddModal = () => {
             <AppTextInput
               value={inputValue}
               onChangeText={onChangeText}
-              style={styles.textInput}
               autoFocus
               placeholder="Add an item here"
             />
             <AppButton
-              text="+"
               onPress={handleAddPress}
-              style={styles.addButton}
-              textStyle={{
-                ...styles.addButtonText,
-                opacity: inputValue ? 1 : 0.2,
-              }}
+              style={{ ...styles.addButton, opacity: inputValue ? 1 : 0.2 }}
               pressedOpacity={1}
-            />
+            >
+              <AddIcon />
+            </AppButton>
           </View>
         </Pressable>
       </SafeAreaView>
@@ -82,7 +79,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: horizontalScale(theme.spacing.spacing_12),
     paddingVertical: verticalScale(theme.spacing.spacing_12),
   },
-  textInput: {},
   closeButton: {
     alignSelf: 'flex-end',
   },
@@ -91,12 +87,8 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeight.bold,
   },
   addButton: {
-    marginTop: verticalScale(theme.spacing.spacing_16),
+    marginTop: verticalScale(theme.spacing.spacing_20),
     flex: 1,
-  },
-  addButtonText: {
-    textAlign: 'center',
-    fontSize: horizontalScale(theme.fontSize.fontSize_32),
-    fontWeight: theme.fontWeight.bold,
+    alignItems: 'center',
   },
 });

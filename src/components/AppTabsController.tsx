@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import AppButton from './AppButton';
+import AddIcon from '../Icons/AddIcons';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import SearchContext from '../context/SearchContext/SearchContext';
@@ -20,12 +21,9 @@ const AppTabsController = () => {
         { paddingBottom: bottom + verticalScale(theme.spacing.spacing_12) },
       ]}
     >
-      <AppButton
-        text="+"
-        onPress={openAddModal}
-        textStyle={styles.addButtonText}
-        disabled={isSearching}
-      />
+      <AppButton onPress={openAddModal} disabled={isSearching}>
+        <AddIcon />
+      </AppButton>
     </View>
   );
 };
@@ -44,9 +42,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: horizontalScale(theme.spacing.spacing_20),
     borderTopColor: theme.colors.border,
     borderTopWidth: 1,
-  },
-  addButtonText: {
-    fontSize: horizontalScale(theme.fontSize.fontSize_32),
-    fontWeight: theme.fontWeight.bold,
   },
 });

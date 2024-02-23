@@ -6,6 +6,7 @@ interface Theme {
     text_black: string;
     text_disabled: string;
     backdrop: string;
+    error: string;
   };
   fontSize: {
     fontSize_10: number;
@@ -65,6 +66,9 @@ interface Theme {
     fontWeight_500: '500';
     bold: 'bold';
   };
+  borderRadius: {
+    borderRadius_8: number;
+  };
 }
 
 const theme: Theme = {
@@ -75,6 +79,7 @@ const theme: Theme = {
     text_black: 'black',
     text_disabled: 'gray',
     backdrop: 'rgba(0, 0, 0, 0.7)',
+    error: 'red',
   },
   fontSize: {
     fontSize_10: 10,
@@ -133,6 +138,9 @@ const theme: Theme = {
     fontWeight_400: '400',
     fontWeight_500: '500',
     bold: 'bold',
+  },
+  borderRadius: {
+    borderRadius_8: 8,
   },
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, TextStyle } from 'react-native';
+import { StyleSheet, TextInput, TextStyle, View } from 'react-native';
 
 import AppButton from './AppButton';
 import theme from '../constants/theme';
@@ -12,7 +12,7 @@ interface Props {
   placeholder?: string;
   onfocus?: () => void;
   onBlur?: () => void;
-  rightIcon?: string;
+  rightIcon?: React.ReactNode;
   onRightIconPress?: () => void;
   style?: TextStyle;
 }
@@ -36,7 +36,7 @@ const AppTextInput = ({
   }, [autoFocus]);
 
   return (
-    <>
+    <View>
       <TextInput
         ref={inputRef}
         placeholder={placeholder}
@@ -47,13 +47,11 @@ const AppTextInput = ({
         onBlur={onBlur}
       />
       {rightIcon && onRightIconPress && (
-        <AppButton
-          text={rightIcon}
-          onPress={onRightIconPress}
-          style={styles.rightButton}
-        />
+        <AppButton onPress={onRightIconPress} style={styles.rightButton}>
+          {rightIcon}
+        </AppButton>
       )}
-    </>
+    </View>
   );
 };
 
@@ -68,8 +66,8 @@ const styles = StyleSheet.create({
   },
   rightButton: {
     position: 'absolute',
-    right: horizontalScale(theme.spacing.spacing_4),
-    top: 0,
-    paddingVertical: verticalScale(theme.spacing.spacing_16),
+    alignSelf: 'flex-end',
+    top: '50%',
+    transform: [{ translateY: -horizontalScale(theme.spacing.spacing_12) }],
   },
 });
