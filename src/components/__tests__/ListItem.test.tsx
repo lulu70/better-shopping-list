@@ -119,6 +119,6 @@ describe('ListItem', () => {
     const textInput = screen.getByDisplayValue('bread');
     fireEvent.changeText(textInput, 'bread');
     fireEvent(textInput, 'blur');
-    expect(mockEditItem).toHaveBeenCalled();
+    expect(mockEditItem).not.toHaveBeenCalled();
   });
 });
