@@ -6,6 +6,7 @@ import { horizontalScale } from '../helpers/scaleHelpers';
 
 const TrashIcon = (props: SvgProps) => (
   <Svg
+    testID="TrashIcon"
     width={horizontalScale(theme.spacing.spacing_26)}
     height={horizontalScale(theme.spacing.spacing_26)}
     viewBox="0 -960 960 960"

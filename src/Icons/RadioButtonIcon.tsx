@@ -6,6 +6,7 @@ import { horizontalScale } from '../helpers/scaleHelpers';
 
 const RadioButtonIcon = (props: SvgProps) => (
   <Svg
+    testID="RadioButtonIcon"
     width={horizontalScale(theme.spacing.spacing_26)}
     height={horizontalScale(theme.spacing.spacing_26)}
     viewBox="0 -960 960 960"
