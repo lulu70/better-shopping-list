@@ -27,6 +27,11 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     getShoppingList();
   }, []);
 
+  const [inEditMode, setInEditMode] = React.useState(false);
+  const [itemInEditMode, setItemInEditMode] = React.useState<ItemWithId | null>(
+    null,
+  );
+
   const openAddModal = () => {
     setAddModalIsOpen(true);
   };
@@ -124,10 +129,26 @@ const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
     updateShoppingListOnAsyncStorage(newShoppingList);
   };
 
+  const goIntoEditMode = (item: ItemWithId) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setInEditMode(true);
+    setItemInEditMode(item);
+  };
+
+  const getOutOfEditMode = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setInEditMode(false);
+    setItemInEditMode(null);
+  };
+
   return (
     <MainContext.Provider
       value={{
         shoppingList,
+        inEditMode,
+        goIntoEditMode,
+        getOutOfEditMode,
+        itemInEditMode,
         addItem,
         changeCheckedItem,
         deleteItem,

@@ -7,6 +7,7 @@ interface Theme {
     text_disabled: string;
     backdrop: string;
     error: string;
+    edit: string;
   };
   fontSize: {
     fontSize_10: number;
@@ -80,6 +81,7 @@ const theme: Theme = {
     text_disabled: 'gray',
     backdrop: 'rgba(0, 0, 0, 0.7)',
     error: 'red',
+    edit: 'blue',
   },
   fontSize: {
     fontSize_10: 10,

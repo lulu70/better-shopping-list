@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import AppButton from './AppButton';
 import CheckIcon from '../Icons/CheckIcon';
@@ -16,8 +16,15 @@ interface Props {
 }
 
 const ListItem = ({ item }: Props) => {
-  const { changeCheckedItem, deleteItem, editItem } =
-    React.useContext(MainContext);
+  const {
+    changeCheckedItem,
+    deleteItem,
+    editItem,
+    goIntoEditMode,
+    getOutOfEditMode,
+    itemInEditMode,
+    inEditMode,
+  } = React.useContext(MainContext);
   const { isSearching } = React.useContext(SearchContext);
   const [itemContent, setItemContent] = React.useState(item.content);
 
@@ -28,6 +35,10 @@ const ListItem = ({ item }: Props) => {
     if (itemContent !== item.content) {
       editItem(item.id, itemContent);
     }
+    getOutOfEditMode();
+  };
+  const handleContentWrapperPress = () => {
+    goIntoEditMode(item);
   };
   return (
     <View style={styles.listItem} key={item.id}>
@@ -35,30 +46,34 @@ const ListItem = ({ item }: Props) => {
         onPress={() => {
           changeCheckedItem(item.id);
         }}
-        disabled={isSearching}
+        disabled={isSearching || inEditMode}
       >
         {item.checked ? <CheckIcon /> : <RadioButtonIcon />}
       </AppButton>
-      <TextInput
-        value={itemContent}
-        onChangeText={handleItemChange}
-        style={[
-          styles.textInput,
-          {
-            color: isSearching
-              ? theme.colors.text_disabled
-              : theme.colors.text_black,
-          },
-        ]}
-        editable={!isSearching}
-        onBlur={handleInputBlur}
-        multiline
-      />
+      <AppButton
+        style={styles.contentWrapper}
+        onPress={handleContentWrapperPress}
+        disabled={isSearching}
+      >
+        {itemInEditMode?.id === item.id ? (
+          <TextInput
+            value={itemContent}
+            onChangeText={handleItemChange}
+            style={[styles.contentText, styles.contentTextInEditMode]}
+            editable={!isSearching}
+            onBlur={handleInputBlur}
+            multiline
+            autoFocus
+          />
+        ) : (
+          <Text style={styles.contentText}>{itemContent}</Text>
+        )}
+      </AppButton>
       <AppButton
         onPress={() => {
           deleteItem(item.id);
         }}
-        disabled={isSearching}
+        disabled={isSearching || inEditMode}
       >
         <TrashIcon />
       </AppButton>
@@ -75,10 +90,15 @@ const styles = StyleSheet.create({
     paddingVertical: verticalScale(theme.spacing.spacing_8),
     alignItems: 'center',
   },
-  textInput: {
+  contentWrapper: {
     flex: 1,
+  },
+  contentText: {
     fontSize: horizontalScale(theme.fontSize.fontSize_18),
     lineHeight: verticalScale(theme.fontSize.fontSize_20),
     marginHorizontal: horizontalScale(theme.spacing.spacing_12),
+  },
+  contentTextInEditMode: {
+    color: theme.colors.edit,
   },
 });

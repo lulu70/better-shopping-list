@@ -4,6 +4,10 @@ import { ItemWithId } from '../../screens/Main';
 
 export const mainContextInitialState = {
   shoppingList: [],
+  inEditMode: false,
+  goIntoEditMode: () => {},
+  getOutOfEditMode: () => {},
+  itemInEditMode: null,
   addModalIsOpen: false,
   openAddModal: () => {},
   closeAddModal: () => {},
@@ -15,6 +19,10 @@ export const mainContextInitialState = {
 
 export interface MainContextState {
   shoppingList: ItemWithId[];
+  inEditMode: boolean;
+  goIntoEditMode: (item: ItemWithId) => void;
+  getOutOfEditMode: () => void;
+  itemInEditMode: ItemWithId | null;
   addModalIsOpen: boolean;
   openAddModal: () => void;
   closeAddModal: () => void;

@@ -1,5 +1,253 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ListItem should go into edit mode 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "marginTop": 19.714285714285715,
+      "paddingVertical": 13.142857142857142,
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={10}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "opacity": 1,
+        },
+        {},
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="52"
+      bbWidth="52"
+      focusable={false}
+      height={52}
+      meetOrSlice={0}
+      minX={0}
+      minY={-960}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 52,
+            "width": 52,
+          },
+        ]
+      }
+      testID="RadioButtonIcon"
+      vbHeight={960}
+      vbWidth={960}
+      width={52}
+    >
+      <RNSVGGroup
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+      >
+        <RNSVGPath
+          d="M480.134-120q-74.673 0-140.41-28.339-65.737-28.34-114.365-76.922-48.627-48.582-76.993-114.257Q120-405.194 120-479.866q0-74.673 28.339-140.41 28.34-65.737 76.922-114.365 48.582-48.627 114.257-76.993Q405.194-840 479.866-840q74.673 0 140.41 28.339 65.737 28.34 114.365 76.922 48.627 48.582 76.993 114.257Q840-554.806 840-480.134q0 74.673-28.339 140.41-28.34 65.737-76.922 114.365-48.582 48.627-114.257 76.993Q554.806-120 480.134-120ZM480-160q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={10}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "opacity": 1,
+        },
+        {
+          "flex": 1,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 36,
+          "lineHeight": 32.857142857142854,
+          "marginHorizontal": 24,
+        }
+      }
+    >
+      bread
+    </Text>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={10}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "opacity": 1,
+        },
+        {},
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="52"
+      bbWidth="52"
+      fill="red"
+      focusable={false}
+      height={52}
+      meetOrSlice={0}
+      minX={0}
+      minY={-960}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 52,
+            "width": 52,
+          },
+        ]
+      }
+      testID="TrashIcon"
+      vbHeight={960}
+      vbWidth={960}
+      width={52}
+    >
+      <RNSVGGroup
+        fill={
+          {
+            "payload": 4294901760,
+            "type": 0,
+          }
+        }
+        propList={
+          [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M304.615-160q-26.846 0-45.731-18.884Q240-197.769 240-224.615V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.385Q720-197 701.5-178.5 683-160 655.385-160h-350.77ZM680-720H280v495.385q0 10.769 6.923 17.692T304.615-200h350.77q9.23 0 16.923-7.692Q680-215.385 680-224.615V-720ZM392.307-280h40.001v-360h-40.001v360Zm135.385 0h40.001v-360h-40.001v360ZM280-720v520-520Z"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;
+
 exports[`ListItem should match snapshot checked 1`] = `
 <View
   style={
@@ -97,26 +345,60 @@ exports[`ListItem should match snapshot checked 1`] = `
       </RNSVGGroup>
     </RNSVGSvgView>
   </View>
-  <TextInput
-    editable={true}
-    multiline={true}
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={10}
     onBlur={[Function]}
-    onChangeText={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       [
         {
-          "flex": 1,
-          "fontSize": 36,
-          "lineHeight": 32.857142857142854,
-          "marginHorizontal": 24,
+          "opacity": 1,
         },
         {
-          "color": "black",
+          "flex": 1,
         },
       ]
     }
-    value="bread"
-  />
+  >
+    <Text
+      style={
+        {
+          "fontSize": 36,
+          "lineHeight": 32.857142857142854,
+          "marginHorizontal": 24,
+        }
+      }
+    >
+      bread
+    </Text>
+  </View>
   <View
     accessibilityState={
       {
@@ -286,6 +568,7 @@ exports[`ListItem should match snapshot in searching state 1`] = `
           },
         ]
       }
+      testID="RadioButtonIcon"
       vbHeight={960}
       vbWidth={960}
       width={52}
@@ -299,7 +582,7 @@ exports[`ListItem should match snapshot in searching state 1`] = `
         }
       >
         <RNSVGPath
-          d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
+          d="M480.134-120q-74.673 0-140.41-28.339-65.737-28.34-114.365-76.922-48.627-48.582-76.993-114.257Q120-405.194 120-479.866q0-74.673 28.339-140.41 28.34-65.737 76.922-114.365 48.582-48.627 114.257-76.993Q405.194-840 479.866-840q74.673 0 140.41 28.339 65.737 28.34 114.365 76.922 48.627 48.582 76.993 114.257Q840-554.806 840-480.134q0 74.673-28.339 140.41-28.34 65.737-76.922 114.365-48.582 48.627-114.257 76.993Q554.806-120 480.134-120ZM480-160q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
           fill={
             {
               "payload": 4278190080,
@@ -310,26 +593,60 @@ exports[`ListItem should match snapshot in searching state 1`] = `
       </RNSVGGroup>
     </RNSVGSvgView>
   </View>
-  <TextInput
-    editable={false}
-    multiline={true}
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": true,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={10}
     onBlur={[Function]}
-    onChangeText={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       [
         {
-          "flex": 1,
-          "fontSize": 36,
-          "lineHeight": 32.857142857142854,
-          "marginHorizontal": 24,
+          "opacity": 0.2,
         },
         {
-          "color": "gray",
+          "flex": 1,
         },
       ]
     }
-    value="bread"
-  />
+  >
+    <Text
+      style={
+        {
+          "fontSize": 36,
+          "lineHeight": 32.857142857142854,
+          "marginHorizontal": 24,
+        }
+      }
+    >
+      bread
+    </Text>
+  </View>
   <View
     accessibilityState={
       {
@@ -524,26 +841,60 @@ exports[`ListItem should match snapshot unchecked 1`] = `
       </RNSVGGroup>
     </RNSVGSvgView>
   </View>
-  <TextInput
-    editable={true}
-    multiline={true}
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={10}
     onBlur={[Function]}
-    onChangeText={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       [
         {
-          "flex": 1,
-          "fontSize": 36,
-          "lineHeight": 32.857142857142854,
-          "marginHorizontal": 24,
+          "opacity": 1,
         },
         {
-          "color": "black",
+          "flex": 1,
         },
       ]
     }
-    value="bread"
-  />
+  >
+    <Text
+      style={
+        {
+          "fontSize": 36,
+          "lineHeight": 32.857142857142854,
+          "marginHorizontal": 24,
+        }
+      }
+    >
+      bread
+    </Text>
+  </View>
   <View
     accessibilityState={
       {

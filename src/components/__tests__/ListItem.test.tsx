@@ -5,14 +5,28 @@ import ListItem from '../ListItem';
 const mockChangeCheckedItem = jest.fn();
 const mockDeleteItem = jest.fn();
 const mockEditItem = jest.fn();
+const mockGoIntoEditMode = jest.fn();
+const mockGetOutOfEditMode = jest.fn();
 const mockMainContextReturnValue = {
   changeCheckedItem: mockChangeCheckedItem,
   deleteItem: mockDeleteItem,
   editItem: mockEditItem,
+  goIntoEditMode: mockGoIntoEditMode,
+  getOutOfEditMode: mockGetOutOfEditMode,
+  itemInEditMode: null,
+  inEditMode: false,
 };
 const mockSearchContextReturnValue = {
   isSearching: false,
 };
+
+const sampleItem = {
+  id: '1631067373',
+  checked: false,
+  content: 'bread',
+  updatedAt: 1631067373,
+};
+
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useContext: jest
@@ -31,93 +45,79 @@ jest.mock('react', () => ({
     .mockImplementationOnce(() => mockSearchContextReturnValue)
     .mockImplementationOnce(() => mockMainContextReturnValue)
     .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => mockMainContextReturnValue)
+    .mockImplementationOnce(() => ({
+      ...mockMainContextReturnValue,
+      itemInEditMode: sampleItem,
+      inEditMode: true,
+    }))
     .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => mockMainContextReturnValue)
+    .mockImplementationOnce(() => ({
+      ...mockMainContextReturnValue,
+      itemInEditMode: sampleItem,
+      inEditMode: true,
+    }))
+    .mockImplementationOnce(() => mockSearchContextReturnValue)
+    .mockImplementationOnce(() => ({
+      ...mockMainContextReturnValue,
+      itemInEditMode: sampleItem,
+      inEditMode: true,
+    }))
+    .mockImplementationOnce(() => mockSearchContextReturnValue)
+    .mockImplementationOnce(() => ({
+      ...mockMainContextReturnValue,
+      itemInEditMode: sampleItem,
+      inEditMode: true,
+    }))
     .mockImplementationOnce(() => mockSearchContextReturnValue),
 }));
+
 beforeEach(() => {
   jest.clearAllMocks();
 });
 describe('ListItem', () => {
   it('should match snapshot unchecked', () => {
-    const item = {
-      id: '1',
-      checked: false,
-      content: 'bread',
-      updatedAt: 1631067373,
-    };
-    render(<ListItem item={item} />);
+    render(<ListItem item={sampleItem} />);
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should match snapshot checked', () => {
-    const item = {
-      id: '1',
-      checked: true,
-      content: 'bread',
-      updatedAt: 1631067373,
-    };
-    render(<ListItem item={item} />);
+    render(<ListItem item={{ ...sampleItem, checked: true }} />);
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should match snapshot in searching state', () => {
-    const item = {
-      id: '1',
-      checked: true,
-      content: 'bread',
-      updatedAt: 1631067373,
-    };
-
-    render(<ListItem item={item} />);
+    render(<ListItem item={sampleItem} />);
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should check the item', () => {
-    const item = {
-      id: '1',
-      checked: false,
-      content: 'bread',
-      updatedAt: 1631067373,
-    };
-    render(<ListItem item={item} />);
+    render(<ListItem item={sampleItem} />);
     const radioButtonIcon = screen.getByTestId('RadioButtonIcon');
     fireEvent.press(radioButtonIcon);
-    expect(mockChangeCheckedItem).toHaveBeenCalledWith(item.id);
+    expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
   });
   it('should delete the item', () => {
-    const item = {
-      id: '1',
-      checked: false,
-      content: 'bread',
-      updatedAt: 1631067373,
-    };
-    render(<ListItem item={item} />);
+    render(<ListItem item={sampleItem} />);
     const radioButtonIcon = screen.getByTestId('TrashIcon');
     fireEvent.press(radioButtonIcon);
-    expect(mockDeleteItem).toHaveBeenCalledWith(item.id);
+    expect(mockDeleteItem).toHaveBeenCalledWith(sampleItem.id);
   });
-  it('should edit the item', () => {
-    const item = {
-      id: '1',
-      checked: false,
-      content: 'bread',
-      updatedAt: 1631067373,
-    };
-    render(<ListItem item={item} />);
-    const textInput = screen.getByDisplayValue('bread');
-    fireEvent.changeText(textInput, 'bread and butter');
+  it('should go into edit mode', () => {
+    render(<ListItem item={sampleItem} />);
+    const contentWrapper = screen.getByText(sampleItem.content);
+    fireEvent.press(contentWrapper);
+    expect(mockGoIntoEditMode).toHaveBeenCalledWith(sampleItem);
+    expect(screen.toJSON()).toMatchSnapshot();
+  });
+  it('should edit the item', async () => {
+    const newContent = 'bread and butter';
+    render(<ListItem item={sampleItem} />);
+    const textInput = screen.getByDisplayValue(sampleItem.content);
+    fireEvent.changeText(textInput, newContent);
     fireEvent(textInput, 'blur');
-    expect(mockEditItem).toHaveBeenCalledWith(item.id, 'bread and butter');
+    expect(mockEditItem).toHaveBeenCalledWith(sampleItem.id, newContent);
   });
-  it('should edit with same value', () => {
-    const item = {
-      id: '1',
-      checked: false,
-      content: 'bread',
-      updatedAt: 1631067373,
-    };
-    render(<ListItem item={item} />);
-    const textInput = screen.getByDisplayValue('bread');
-    fireEvent.changeText(textInput, 'bread');
+  it('should not edit if theres no change', async () => {
+    render(<ListItem item={sampleItem} />);
+    const textInput = screen.getByDisplayValue(sampleItem.content);
+    fireEvent.changeText(textInput, sampleItem.content);
     fireEvent(textInput, 'blur');
     expect(mockEditItem).not.toHaveBeenCalled();
   });
