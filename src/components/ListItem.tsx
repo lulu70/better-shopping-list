@@ -34,10 +34,8 @@ const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
     setItemContent(text);
   };
   const handleInputBlur = () => {
-    if (itemContent !== item.content) {
-      editItem(item.id, itemContent);
-      scrollToTop();
-    }
+    editItem(item.id, itemContent);
+    scrollToTop();
     getOutOfEditMode();
   };
   const handleContentWrapperPress = () => {

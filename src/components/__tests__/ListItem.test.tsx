@@ -59,18 +59,6 @@ jest.mock('react', () => ({
       itemInEditMode: sampleItem,
       inEditMode: true,
     }))
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => ({
-      ...mockMainContextReturnValue,
-      itemInEditMode: sampleItem,
-      inEditMode: true,
-    }))
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => ({
-      ...mockMainContextReturnValue,
-      itemInEditMode: sampleItem,
-      inEditMode: true,
-    }))
     .mockImplementationOnce(() => mockSearchContextReturnValue),
 }));
 
@@ -160,18 +148,5 @@ describe('ListItem', () => {
     fireEvent(textInput, 'blur');
     expect(mockScrollToTop).toHaveBeenCalled();
     expect(mockEditItem).toHaveBeenCalledWith(sampleItem.id, newContent);
-  });
-  it('should not edit if theres no change', async () => {
-    render(
-      <ListItem
-        item={sampleItem}
-        scrollToTop={mockScrollToTop}
-        scrollToItem={mockScrollToItem}
-      />,
-    );
-    const textInput = screen.getByDisplayValue(sampleItem.content);
-    fireEvent.changeText(textInput, sampleItem.content);
-    fireEvent(textInput, 'blur');
-    expect(mockEditItem).not.toHaveBeenCalled();
   });
 });
