@@ -194,7 +194,7 @@ exports[`Main should match snapshot 1`] = `
             "minHeight": "100%",
           },
           {
-            "paddingBottom": 420.57142857142856,
+            "paddingBottom": 841.1428571428571,
           },
         ]
       }
@@ -224,7 +224,7 @@ exports[`Main should match snapshot 1`] = `
       [
         {
           "backgroundColor": "blanchedalmond",
-          "borderTopColor": "#4c4034",
+          "borderTopColor": "gray",
           "borderTopWidth": 1,
           "bottom": 0,
           "flexDirection": "row",

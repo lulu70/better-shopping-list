@@ -13,9 +13,11 @@ import { type ItemWithId } from '../screens/Main';
 
 interface Props {
   item: ItemWithId;
+  scrollToTop: () => void;
+  scrollToItem: (item: ItemWithId) => void;
 }
 
-const ListItem = ({ item }: Props) => {
+const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
   const {
     changeCheckedItem,
     deleteItem,
@@ -34,10 +36,12 @@ const ListItem = ({ item }: Props) => {
   const handleInputBlur = () => {
     if (itemContent !== item.content) {
       editItem(item.id, itemContent);
+      scrollToTop();
     }
     getOutOfEditMode();
   };
   const handleContentWrapperPress = () => {
+    scrollToItem(item);
     goIntoEditMode(item);
   };
   return (

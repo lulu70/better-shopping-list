@@ -20,6 +20,9 @@ const mockSearchContextReturnValue = {
   isSearching: false,
 };
 
+const mockScrollToTop = jest.fn();
+const mockScrollToItem = jest.fn();
+
 const sampleItem = {
   id: '1631067373',
   checked: false,
@@ -76,46 +79,96 @@ beforeEach(() => {
 });
 describe('ListItem', () => {
   it('should match snapshot unchecked', () => {
-    render(<ListItem item={sampleItem} />);
+    render(
+      <ListItem
+        item={sampleItem}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should match snapshot checked', () => {
-    render(<ListItem item={{ ...sampleItem, checked: true }} />);
+    render(
+      <ListItem
+        item={{ ...sampleItem, checked: true }}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should match snapshot in searching state', () => {
-    render(<ListItem item={sampleItem} />);
+    render(
+      <ListItem
+        item={sampleItem}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should check the item', () => {
-    render(<ListItem item={sampleItem} />);
+    render(
+      <ListItem
+        item={sampleItem}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     const radioButtonIcon = screen.getByTestId('RadioButtonIcon');
     fireEvent.press(radioButtonIcon);
     expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
   });
   it('should delete the item', () => {
-    render(<ListItem item={sampleItem} />);
+    render(
+      <ListItem
+        item={sampleItem}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     const radioButtonIcon = screen.getByTestId('TrashIcon');
     fireEvent.press(radioButtonIcon);
     expect(mockDeleteItem).toHaveBeenCalledWith(sampleItem.id);
   });
   it('should go into edit mode', () => {
-    render(<ListItem item={sampleItem} />);
+    render(
+      <ListItem
+        item={sampleItem}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     const contentWrapper = screen.getByText(sampleItem.content);
     fireEvent.press(contentWrapper);
+    expect(mockScrollToItem).toHaveBeenCalledWith(sampleItem);
     expect(mockGoIntoEditMode).toHaveBeenCalledWith(sampleItem);
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should edit the item', async () => {
     const newContent = 'bread and butter';
-    render(<ListItem item={sampleItem} />);
+    render(
+      <ListItem
+        item={sampleItem}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     const textInput = screen.getByDisplayValue(sampleItem.content);
     fireEvent.changeText(textInput, newContent);
     fireEvent(textInput, 'blur');
+    expect(mockScrollToTop).toHaveBeenCalled();
     expect(mockEditItem).toHaveBeenCalledWith(sampleItem.id, newContent);
   });
   it('should not edit if theres no change', async () => {
-    render(<ListItem item={sampleItem} />);
+    render(
+      <ListItem
+        item={sampleItem}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
     const textInput = screen.getByDisplayValue(sampleItem.content);
     fireEvent.changeText(textInput, sampleItem.content);
     fireEvent(textInput, 'blur');
