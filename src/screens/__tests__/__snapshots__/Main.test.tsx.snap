@@ -69,72 +69,20 @@ exports[`Main should match snapshot 1`] = `
           }
         }
       >
-        <View>
-          <TextInput
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Search"
-            style={
-              [
-                {
-                  "backgroundColor": "white",
-                  "fontSize": 32,
-                  "paddingHorizontal": 32,
-                  "paddingVertical": 19.714285714285715,
-                },
-                undefined,
-              ]
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flexDirection": "row",
             }
-            value=""
-          />
+          }
+        >
           <View
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": false,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            hitSlop={10}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
-              [
-                {
-                  "opacity": 1,
-                },
-                {
-                  "alignSelf": "flex-end",
-                  "position": "absolute",
-                  "top": "50%",
-                  "transform": [
-                    {
-                      "translateY": -24,
-                    },
-                  ],
-                },
-              ]
+              {
+                "paddingLeft": 16,
+              }
             }
           >
             <RNSVGSvgView
@@ -183,6 +131,28 @@ exports[`Main should match snapshot 1`] = `
               </RNSVGGroup>
             </RNSVGSvgView>
           </View>
+          <TextInput
+            maxLength={28}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            placeholder="Search"
+            style={
+              [
+                {
+                  "backgroundColor": "white",
+                  "flexGrow": 1,
+                  "fontSize": 32,
+                  "paddingVertical": 19.714285714285715,
+                },
+                {
+                  "paddingHorizontal": 8,
+                },
+                undefined,
+              ]
+            }
+            value=""
+          />
         </View>
       </View>
     </View>

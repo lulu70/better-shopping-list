@@ -62,9 +62,8 @@ const Search = () => {
         placeholder="Search"
         onfocus={handleInputFocus}
         onBlur={handleInputBlur}
-        rightIcon={
-          isSearching && inputValue.length > 0 ? <CloseIcon /> : <SearchIcon />
-        }
+        rightIcon={isSearching && inputValue.length > 0 && <CloseIcon />}
+        leftIcon={<SearchIcon />}
         onRightIconPress={handleRightIconPress}
       />
       {searchResults.length > 0 && (

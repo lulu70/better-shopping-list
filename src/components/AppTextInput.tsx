@@ -14,6 +14,8 @@ interface Props {
   onBlur?: () => void;
   rightIcon?: React.ReactNode;
   onRightIconPress?: () => void;
+  leftIcon?: React.ReactNode;
+  maxLength?: number;
   style?: TextStyle;
 }
 
@@ -26,7 +28,8 @@ const AppTextInput = ({
   onBlur,
   rightIcon,
   onRightIconPress,
-
+  leftIcon,
+  maxLength = 28,
   style,
 }: Props) => {
   const inputRef = React.useRef<TextInput>(null);
@@ -36,11 +39,21 @@ const AppTextInput = ({
   }, [autoFocus]);
 
   return (
-    <View>
+    <View style={styles.container}>
+      <View style={styles.leftIcon}>{leftIcon}</View>
       <TextInput
         ref={inputRef}
         placeholder={placeholder}
-        style={[styles.textInput, style]}
+        maxLength={maxLength}
+        style={[
+          styles.textInput,
+          {
+            paddingHorizontal: leftIcon
+              ? horizontalScale(theme.spacing.spacing_4)
+              : horizontalScale(theme.spacing.spacing_16),
+          },
+          style,
+        ]}
         value={value}
         onChangeText={onChangeText}
         onFocus={onfocus}
@@ -58,16 +71,19 @@ const AppTextInput = ({
 export default AppTextInput;
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  leftIcon: {
+    paddingLeft: horizontalScale(theme.spacing.spacing_8),
+  },
   textInput: {
     backgroundColor: 'white',
-    paddingHorizontal: horizontalScale(theme.spacing.spacing_16),
     paddingVertical: verticalScale(theme.spacing.spacing_12),
     fontSize: horizontalScale(theme.fontSize.fontSize_16),
+    flexGrow: 1,
   },
-  rightButton: {
-    position: 'absolute',
-    alignSelf: 'flex-end',
-    top: '50%',
-    transform: [{ translateY: -horizontalScale(theme.spacing.spacing_12) }],
-  },
+  rightButton: {},
 });

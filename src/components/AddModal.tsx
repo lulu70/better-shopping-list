@@ -11,6 +11,7 @@ import {
 import AppButton from './AppButton';
 import AppTextInput from './AppTextInput';
 import AddIcon from '../Icons/AddIcons';
+import CloseIcon from '../Icons/CloseIcon';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
@@ -20,6 +21,9 @@ const AddModal = () => {
     React.useContext(MainContext);
   const [inputValue, setInputValue] = React.useState('');
 
+  const resetInputValue = () => {
+    setInputValue('');
+  };
   const resetAddModalState = () => {
     setInputValue('');
     closeAddModal();
@@ -46,6 +50,8 @@ const AddModal = () => {
               onChangeText={onChangeText}
               autoFocus
               placeholder="Add an item here"
+              rightIcon={inputValue.length > 0 && <CloseIcon />}
+              onRightIconPress={resetInputValue}
             />
             <AppButton
               onPress={handleAddPress}
