@@ -74,6 +74,7 @@ const Search = () => {
             <AppButton
               text={item.content}
               style={styles.searchItem}
+              textStyle={styles.searchItemText}
               onPress={() => {
                 handleSearchItemPress(item);
               }}
@@ -97,11 +98,14 @@ const styles = StyleSheet.create({
     paddingBottom: verticalScale(theme.spacing.spacing_2048),
   },
   searchItem: {
-    backgroundColor: theme.colors.background_secondary,
-    paddingHorizontal: horizontalScale(theme.spacing.spacing_8),
+    backgroundColor: theme.colors.background,
     // vertical scale doesn't work here
     paddingVertical: horizontalScale(theme.spacing.spacing_20),
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
+  },
+  searchItemText: {
+    fontSize: horizontalScale(theme.fontSize.fontSize_18),
+    lineHeight: verticalScale(theme.fontSize.fontSize_20),
   },
 });

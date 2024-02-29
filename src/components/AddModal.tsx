@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   innerContainer: {
-    backgroundColor: theme.colors.background_secondary,
+    backgroundColor: theme.colors.background,
     height: verticalScale(theme.spacing.spacing_256),
     marginTop: verticalScale(theme.spacing.spacing_96),
     marginHorizontal: horizontalScale(theme.spacing.spacing_16),

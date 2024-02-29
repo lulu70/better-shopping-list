@@ -1,7 +1,6 @@
 interface Theme {
   colors: {
     background: string;
-    background_secondary: string;
     border: string;
     text_black: string;
     text_disabled: string;
@@ -76,7 +75,6 @@ interface Theme {
 const theme: Theme = {
   colors: {
     background: 'blanchedalmond',
-    background_secondary: '#c1b9a4',
     border: 'gray',
     text_black: 'black',
     text_disabled: 'gray',
