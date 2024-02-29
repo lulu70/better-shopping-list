@@ -12,7 +12,7 @@ exports[`Main should match snapshot 1`] = `
   }
   style={
     {
-      "backgroundColor": "blanchedalmond",
+      "backgroundColor": "#f8f9fa",
       "flex": 1,
     }
   }
@@ -73,8 +73,10 @@ exports[`Main should match snapshot 1`] = `
           style={
             {
               "alignItems": "center",
-              "backgroundColor": "white",
+              "backgroundColor": "lightgray",
+              "borderRadius": 12,
               "flexDirection": "row",
+              "overflow": "hidden",
             }
           }
         >
@@ -137,10 +139,11 @@ exports[`Main should match snapshot 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             placeholder="Search"
+            placeholderTextColor="gray"
             style={
               [
                 {
-                  "backgroundColor": "white",
+                  "backgroundColor": "lightgray",
                   "flexGrow": 1,
                   "fontSize": 32,
                   "paddingVertical": 19.714285714285715,
@@ -193,7 +196,7 @@ exports[`Main should match snapshot 1`] = `
     style={
       [
         {
-          "backgroundColor": "blanchedalmond",
+          "backgroundColor": "#f8f9fa",
           "borderTopColor": "gray",
           "borderTopWidth": 1,
           "bottom": 0,

@@ -2,6 +2,7 @@ interface Theme {
   colors: {
     background: string;
     border: string;
+    gray_100: string;
     text_black: string;
     text_disabled: string;
     backdrop: string;
@@ -74,13 +75,14 @@ interface Theme {
 
 const theme: Theme = {
   colors: {
-    background: 'blanchedalmond',
+    background: '#f8f9fa',
     border: 'gray',
+    gray_100: 'lightgray',
     text_black: 'black',
     text_disabled: 'gray',
     backdrop: 'rgba(0, 0, 0, 0.7)',
-    error: 'red',
-    edit: 'blue',
+    error: '#dc3545',
+    edit: '#007bff',
   },
   fontSize: {
     fontSize_10: 10,

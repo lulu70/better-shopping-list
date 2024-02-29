@@ -44,6 +44,7 @@ const AppTextInput = ({
       <TextInput
         ref={inputRef}
         placeholder={placeholder}
+        placeholderTextColor={theme.colors.text_disabled}
         maxLength={maxLength}
         style={[
           styles.textInput,
@@ -73,14 +74,16 @@ export default AppTextInput;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.gray_100,
     alignItems: 'center',
+    borderRadius: theme.spacing.spacing_12,
+    overflow: 'hidden',
   },
   leftIcon: {
     paddingLeft: horizontalScale(theme.spacing.spacing_8),
   },
   textInput: {
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.gray_100,
     paddingVertical: verticalScale(theme.spacing.spacing_12),
     fontSize: horizontalScale(theme.fontSize.fontSize_16),
     flexGrow: 1,
