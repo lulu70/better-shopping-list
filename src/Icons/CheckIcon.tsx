@@ -5,6 +5,7 @@ import theme from '../constants/theme';
 import { horizontalScale } from '../helpers/scaleHelpers';
 const CheckIcon = (props: SvgProps) => (
   <Svg
+    testID="CheckIcon"
     width={horizontalScale(theme.spacing.spacing_26)}
     height={horizontalScale(theme.spacing.spacing_26)}
     viewBox="0 -960 960 960"

@@ -7,6 +7,7 @@ interface Props {
   onPress: () => void;
   disabled?: boolean;
   pressedOpacity?: number;
+  hitSlop?: number;
   children?: React.ReactNode;
 }
 const AppButton = ({
@@ -17,11 +18,12 @@ const AppButton = ({
   onPress,
   disabled = false,
   pressedOpacity = 0.5,
+  hitSlop = 10,
 }: Props) => {
   return (
     <Pressable
       onPress={onPress}
-      hitSlop={10}
+      hitSlop={hitSlop}
       style={({ pressed }) => [
         {
           opacity: pressed ? pressedOpacity : disabled ? 0.2 : 1,

@@ -48,6 +48,20 @@ jest.mock('react', () => ({
     .mockImplementationOnce(() => mockSearchContextReturnValue)
     .mockImplementationOnce(() => mockMainContextReturnValue)
     .mockImplementationOnce(() => mockSearchContextReturnValue)
+    .mockImplementationOnce(() => mockMainContextReturnValue)
+    .mockImplementationOnce(() => mockSearchContextReturnValue)
+    .mockImplementationOnce(() => ({
+      ...mockMainContextReturnValue,
+      itemInEditMode: sampleItem,
+      inEditMode: true,
+    }))
+    .mockImplementationOnce(() => mockSearchContextReturnValue)
+    .mockImplementationOnce(() => ({
+      ...mockMainContextReturnValue,
+      itemInEditMode: sampleItem,
+      inEditMode: true,
+    }))
+    .mockImplementationOnce(() => mockSearchContextReturnValue)
     .mockImplementationOnce(() => ({
       ...mockMainContextReturnValue,
       itemInEditMode: sampleItem,
@@ -107,6 +121,20 @@ describe('ListItem', () => {
     const radioButtonIcon = screen.getByTestId('RadioButtonIcon');
     fireEvent.press(radioButtonIcon);
     expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
+    expect(mockScrollToItem).toHaveBeenCalledWith(sampleItem);
+  });
+  it('should uncheck the item', () => {
+    render(
+      <ListItem
+        item={{ ...sampleItem, checked: true }}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
+    const checkButtonIcon = screen.getByTestId('CheckIcon');
+    fireEvent.press(checkButtonIcon);
+    expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
+    expect(mockScrollToTop).toHaveBeenCalled();
   });
   it('should delete the item', () => {
     render(
@@ -134,7 +162,7 @@ describe('ListItem', () => {
     expect(mockGoIntoEditMode).toHaveBeenCalledWith(sampleItem);
     expect(screen.toJSON()).toMatchSnapshot();
   });
-  it('should edit the item', async () => {
+  it('should edit an item', async () => {
     const newContent = 'bread and butter';
     render(
       <ListItem
@@ -147,6 +175,20 @@ describe('ListItem', () => {
     fireEvent.changeText(textInput, newContent);
     fireEvent(textInput, 'blur');
     expect(mockScrollToTop).toHaveBeenCalled();
+    expect(mockEditItem).toHaveBeenCalledWith(sampleItem.id, newContent);
+  });
+  it('should edit a checked item', async () => {
+    const newContent = 'bread and butter';
+    render(
+      <ListItem
+        item={{ ...sampleItem, checked: true }}
+        scrollToTop={mockScrollToTop}
+        scrollToItem={mockScrollToItem}
+      />,
+    );
+    const textInput = screen.getByDisplayValue(sampleItem.content);
+    fireEvent.changeText(textInput, newContent);
+    fireEvent(textInput, 'blur');
     expect(mockEditItem).toHaveBeenCalledWith(sampleItem.id, newContent);
   });
 });

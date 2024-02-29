@@ -35,7 +35,9 @@ const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
   };
   const handleInputBlur = () => {
     editItem(item.id, itemContent);
-    scrollToTop();
+    if (!item.checked) {
+      scrollToTop();
+    }
     getOutOfEditMode();
   };
   const handleContentWrapperPress = () => {
@@ -47,6 +49,11 @@ const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
       <AppButton
         onPress={() => {
           changeCheckedItem(item.id);
+          if (item.checked) {
+            scrollToTop();
+          } else {
+            scrollToItem(item);
+          }
         }}
         disabled={isSearching || inEditMode}
       >
@@ -56,6 +63,7 @@ const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
         style={styles.contentWrapper}
         onPress={handleContentWrapperPress}
         disabled={isSearching}
+        hitSlop={0}
       >
         {itemInEditMode?.id === item.id ? (
           <TextInput
