@@ -12,9 +12,6 @@ const List = () => {
   const { shoppingList } = React.useContext(MainContext);
   const { bottom } = useSafeAreaInsets();
   const flatListRef = React.useRef<FlatList<ItemWithId>>(null);
-  const scrollToTop = () => {
-    flatListRef.current?.scrollToIndex({ index: 0, animated: true });
-  };
   const scrollToItem = (item: ItemWithId) => {
     flatListRef.current?.scrollToItem({ item, animated: true });
   };
@@ -30,11 +27,7 @@ const List = () => {
       ]}
       data={shoppingList}
       renderItem={({ item }) => (
-        <ListItem
-          item={item}
-          scrollToTop={scrollToTop}
-          scrollToItem={scrollToItem}
-        />
+        <ListItem item={item} scrollToItem={scrollToItem} />
       )}
       keyExtractor={(item, index) => item.id || index.toString()}
     />

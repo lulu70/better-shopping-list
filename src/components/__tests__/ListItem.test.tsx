@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
+import { useContext } from 'react';
 
 import ListItem from '../ListItem';
 
@@ -20,7 +21,6 @@ const mockSearchContextReturnValue = {
   isSearching: false,
 };
 
-const mockScrollToTop = jest.fn();
 const mockScrollToItem = jest.fn();
 
 const sampleItem = {
@@ -32,48 +32,7 @@ const sampleItem = {
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
-  useContext: jest
-    .fn()
-    .mockImplementationOnce(() => mockMainContextReturnValue)
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => mockMainContextReturnValue)
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => mockMainContextReturnValue)
-    .mockImplementationOnce(() => ({
-      isSearching: true,
-    }))
-    .mockImplementationOnce(() => mockMainContextReturnValue)
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => mockMainContextReturnValue)
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => mockMainContextReturnValue)
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => mockMainContextReturnValue)
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => ({
-      ...mockMainContextReturnValue,
-      itemInEditMode: sampleItem,
-      inEditMode: true,
-    }))
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => ({
-      ...mockMainContextReturnValue,
-      itemInEditMode: sampleItem,
-      inEditMode: true,
-    }))
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => ({
-      ...mockMainContextReturnValue,
-      itemInEditMode: sampleItem,
-      inEditMode: true,
-    }))
-    .mockImplementationOnce(() => mockSearchContextReturnValue)
-    .mockImplementationOnce(() => ({
-      ...mockMainContextReturnValue,
-      itemInEditMode: sampleItem,
-      inEditMode: true,
-    }))
-    .mockImplementationOnce(() => mockSearchContextReturnValue),
+  useContext: jest.fn(),
 }));
 
 beforeEach(() => {
@@ -81,81 +40,79 @@ beforeEach(() => {
 });
 describe('ListItem', () => {
   it('should match snapshot unchecked', () => {
-    render(
-      <ListItem
-        item={sampleItem}
-        scrollToTop={mockScrollToTop}
-        scrollToItem={mockScrollToItem}
-      />,
-    );
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
+    render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
     expect(screen.toJSON()).toMatchSnapshot();
   });
+
   it('should match snapshot checked', () => {
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
     render(
       <ListItem
         item={{ ...sampleItem, checked: true }}
-        scrollToTop={mockScrollToTop}
         scrollToItem={mockScrollToItem}
       />,
     );
     expect(screen.toJSON()).toMatchSnapshot();
   });
+
   it('should match snapshot in searching state', () => {
-    render(
-      <ListItem
-        item={sampleItem}
-        scrollToTop={mockScrollToTop}
-        scrollToItem={mockScrollToItem}
-      />,
-    );
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => ({
+        ...mockSearchContextReturnValue,
+        isSearching: true,
+      }));
+    render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
     expect(screen.toJSON()).toMatchSnapshot();
   });
+
   it('should check the item', () => {
-    render(
-      <ListItem
-        item={sampleItem}
-        scrollToTop={mockScrollToTop}
-        scrollToItem={mockScrollToItem}
-      />,
-    );
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
+    render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
     const radioButtonIcon = screen.getByTestId('RadioButtonIcon');
     fireEvent.press(radioButtonIcon);
     expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
     expect(mockScrollToItem).toHaveBeenCalledWith(sampleItem);
   });
   it('should uncheck the item', () => {
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
     render(
       <ListItem
         item={{ ...sampleItem, checked: true }}
-        scrollToTop={mockScrollToTop}
         scrollToItem={mockScrollToItem}
       />,
     );
     const checkButtonIcon = screen.getByTestId('CheckIcon');
     fireEvent.press(checkButtonIcon);
     expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
-    expect(mockScrollToTop).toHaveBeenCalled();
+    expect(mockScrollToItem).toHaveBeenCalledWith({
+      ...sampleItem,
+      checked: true,
+    });
   });
   it('should delete the item', () => {
-    render(
-      <ListItem
-        item={sampleItem}
-        scrollToTop={mockScrollToTop}
-        scrollToItem={mockScrollToItem}
-      />,
-    );
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
+    render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
     const radioButtonIcon = screen.getByTestId('TrashIcon');
     fireEvent.press(radioButtonIcon);
     expect(mockDeleteItem).toHaveBeenCalledWith(sampleItem.id);
   });
   it('should go into edit mode', () => {
-    render(
-      <ListItem
-        item={sampleItem}
-        scrollToTop={mockScrollToTop}
-        scrollToItem={mockScrollToItem}
-      />,
-    );
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
+    render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
     const contentWrapper = screen.getByText(sampleItem.content);
     fireEvent.press(contentWrapper);
     expect(mockScrollToItem).toHaveBeenCalledWith(sampleItem);
@@ -163,26 +120,47 @@ describe('ListItem', () => {
     expect(screen.toJSON()).toMatchSnapshot();
   });
   it('should edit an item', async () => {
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => ({
+        ...mockMainContextReturnValue,
+        itemInEditMode: sampleItem,
+        inEditMode: true,
+      }))
+      .mockImplementationOnce(() => mockSearchContextReturnValue)
+      .mockImplementationOnce(() => ({
+        ...mockMainContextReturnValue,
+        itemInEditMode: sampleItem,
+        inEditMode: true,
+      }))
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
+
     const newContent = 'bread and butter';
-    render(
-      <ListItem
-        item={sampleItem}
-        scrollToTop={mockScrollToTop}
-        scrollToItem={mockScrollToItem}
-      />,
-    );
+    render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
     const textInput = screen.getByDisplayValue(sampleItem.content);
     fireEvent.changeText(textInput, newContent);
     fireEvent(textInput, 'blur');
-    expect(mockScrollToTop).toHaveBeenCalled();
     expect(mockEditItem).toHaveBeenCalledWith(sampleItem.id, newContent);
+    expect(mockGetOutOfEditMode).toHaveBeenCalled();
+    expect(mockScrollToItem).toHaveBeenCalledWith(sampleItem);
   });
   it('should edit a checked item', async () => {
+    (useContext as jest.MockedFunction<typeof useContext>)
+      .mockImplementationOnce(() => ({
+        ...mockMainContextReturnValue,
+        itemInEditMode: sampleItem,
+        inEditMode: true,
+      }))
+      .mockImplementationOnce(() => mockSearchContextReturnValue)
+      .mockImplementationOnce(() => ({
+        ...mockMainContextReturnValue,
+        itemInEditMode: sampleItem,
+        inEditMode: true,
+      }))
+      .mockImplementationOnce(() => mockSearchContextReturnValue);
     const newContent = 'bread and butter';
     render(
       <ListItem
         item={{ ...sampleItem, checked: true }}
-        scrollToTop={mockScrollToTop}
         scrollToItem={mockScrollToItem}
       />,
     );
@@ -190,5 +168,10 @@ describe('ListItem', () => {
     fireEvent.changeText(textInput, newContent);
     fireEvent(textInput, 'blur');
     expect(mockEditItem).toHaveBeenCalledWith(sampleItem.id, newContent);
+    expect(mockGetOutOfEditMode).toHaveBeenCalled();
+    expect(mockScrollToItem).toHaveBeenCalledWith({
+      ...sampleItem,
+      checked: true,
+    });
   });
 });

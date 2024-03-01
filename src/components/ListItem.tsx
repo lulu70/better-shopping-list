@@ -13,11 +13,10 @@ import { type ItemWithId } from '../screens/Main';
 
 interface Props {
   item: ItemWithId;
-  scrollToTop: () => void;
   scrollToItem: (item: ItemWithId) => void;
 }
 
-const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
+const ListItem = ({ item, scrollToItem }: Props) => {
   const {
     changeCheckedItem,
     deleteItem,
@@ -30,32 +29,35 @@ const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
   const { isSearching } = React.useContext(SearchContext);
   const [itemContent, setItemContent] = React.useState(item.content);
 
+  React.useEffect(() => {
+    if (itemInEditMode?.id === item.id) {
+      scrollToItem(item);
+    }
+  }, [itemInEditMode]);
+
+  React.useEffect(() => {
+    scrollToItem(item);
+  }, [item.updatedAt]);
+
   const handleItemChange = (text: string) => {
     setItemContent(text);
   };
   const handleInputBlur = () => {
     editItem(item.id, itemContent);
-    if (!item.checked) {
-      scrollToTop();
-    }
     getOutOfEditMode();
   };
   const handleContentWrapperPress = () => {
-    scrollToItem(item);
     goIntoEditMode(item);
   };
+  const handleCheckPress = () => {
+    changeCheckedItem(item.id);
+  };
+
   return (
     <View style={styles.listItem} key={item.id}>
       <AppButton
         style={styles.checkButton}
-        onPress={() => {
-          changeCheckedItem(item.id);
-          if (item.checked) {
-            scrollToTop();
-          } else {
-            scrollToItem(item);
-          }
-        }}
+        onPress={handleCheckPress}
         disabled={isSearching || inEditMode}
       >
         {item.checked ? <CheckIcon /> : <RadioButtonIcon />}
