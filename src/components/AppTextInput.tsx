@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: theme.colors.gray_100,
     alignItems: 'center',
-    borderRadius: theme.spacing.spacing_12,
+    borderRadius: theme.spacing.spacing_24,
     overflow: 'hidden',
   },
   leftIcon: {
