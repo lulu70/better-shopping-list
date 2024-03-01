@@ -6,8 +6,6 @@ exports[`ListItem should go into edit mode 1`] = `
     {
       "alignItems": "center",
       "flexDirection": "row",
-      "marginTop": 19.714285714285715,
-      "paddingVertical": 13.142857142857142,
     }
   }
 >
@@ -47,7 +45,9 @@ exports[`ListItem should go into edit mode 1`] = `
         {
           "opacity": 1,
         },
-        {},
+        {
+          "marginRight": 24,
+        },
       ]
     }
   >
@@ -136,6 +136,7 @@ exports[`ListItem should go into edit mode 1`] = `
         },
         {
           "flex": 1,
+          "paddingVertical": 26.285714285714285,
         },
       ]
     }
@@ -145,7 +146,6 @@ exports[`ListItem should go into edit mode 1`] = `
         {
           "fontSize": 36,
           "lineHeight": 32.857142857142854,
-          "marginHorizontal": 24,
         }
       }
     >
@@ -254,8 +254,6 @@ exports[`ListItem should match snapshot checked 1`] = `
     {
       "alignItems": "center",
       "flexDirection": "row",
-      "marginTop": 19.714285714285715,
-      "paddingVertical": 13.142857142857142,
     }
   }
 >
@@ -295,7 +293,9 @@ exports[`ListItem should match snapshot checked 1`] = `
         {
           "opacity": 1,
         },
-        {},
+        {
+          "marginRight": 24,
+        },
       ]
     }
   >
@@ -384,6 +384,7 @@ exports[`ListItem should match snapshot checked 1`] = `
         },
         {
           "flex": 1,
+          "paddingVertical": 26.285714285714285,
         },
       ]
     }
@@ -393,7 +394,6 @@ exports[`ListItem should match snapshot checked 1`] = `
         {
           "fontSize": 36,
           "lineHeight": 32.857142857142854,
-          "marginHorizontal": 24,
         }
       }
     >
@@ -502,8 +502,6 @@ exports[`ListItem should match snapshot in searching state 1`] = `
     {
       "alignItems": "center",
       "flexDirection": "row",
-      "marginTop": 19.714285714285715,
-      "paddingVertical": 13.142857142857142,
     }
   }
 >
@@ -543,7 +541,9 @@ exports[`ListItem should match snapshot in searching state 1`] = `
         {
           "opacity": 0.2,
         },
-        {},
+        {
+          "marginRight": 24,
+        },
       ]
     }
   >
@@ -632,6 +632,7 @@ exports[`ListItem should match snapshot in searching state 1`] = `
         },
         {
           "flex": 1,
+          "paddingVertical": 26.285714285714285,
         },
       ]
     }
@@ -641,7 +642,6 @@ exports[`ListItem should match snapshot in searching state 1`] = `
         {
           "fontSize": 36,
           "lineHeight": 32.857142857142854,
-          "marginHorizontal": 24,
         }
       }
     >
@@ -750,8 +750,6 @@ exports[`ListItem should match snapshot unchecked 1`] = `
     {
       "alignItems": "center",
       "flexDirection": "row",
-      "marginTop": 19.714285714285715,
-      "paddingVertical": 13.142857142857142,
     }
   }
 >
@@ -791,7 +789,9 @@ exports[`ListItem should match snapshot unchecked 1`] = `
         {
           "opacity": 1,
         },
-        {},
+        {
+          "marginRight": 24,
+        },
       ]
     }
   >
@@ -880,6 +880,7 @@ exports[`ListItem should match snapshot unchecked 1`] = `
         },
         {
           "flex": 1,
+          "paddingVertical": 26.285714285714285,
         },
       ]
     }
@@ -889,7 +890,6 @@ exports[`ListItem should match snapshot unchecked 1`] = `
         {
           "fontSize": 36,
           "lineHeight": 32.857142857142854,
-          "marginHorizontal": 24,
         }
       }
     >

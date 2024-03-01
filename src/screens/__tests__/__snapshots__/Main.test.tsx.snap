@@ -74,7 +74,7 @@ exports[`Main should match snapshot 1`] = `
             {
               "alignItems": "center",
               "backgroundColor": "lightgray",
-              "borderRadius": 12,
+              "borderRadius": 24,
               "flexDirection": "row",
               "overflow": "hidden",
             }
