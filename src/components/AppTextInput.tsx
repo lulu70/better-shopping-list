@@ -88,5 +88,7 @@ const styles = StyleSheet.create({
     fontSize: horizontalScale(theme.fontSize.fontSize_16),
     flexGrow: 1,
   },
-  rightButton: {},
+  rightButton: {
+    paddingRight: horizontalScale(theme.spacing.spacing_8),
+  },
 });

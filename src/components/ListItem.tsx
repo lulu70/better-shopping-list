@@ -47,6 +47,7 @@ const ListItem = ({ item, scrollToTop, scrollToItem }: Props) => {
   return (
     <View style={styles.listItem} key={item.id}>
       <AppButton
+        style={styles.checkButton}
         onPress={() => {
           changeCheckedItem(item.id);
           if (item.checked) {
@@ -96,17 +97,18 @@ export default ListItem;
 const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
-    marginTop: verticalScale(theme.spacing.spacing_12),
-    paddingVertical: verticalScale(theme.spacing.spacing_8),
     alignItems: 'center',
   },
   contentWrapper: {
+    paddingVertical: verticalScale(theme.spacing.spacing_16),
     flex: 1,
+  },
+  checkButton: {
+    marginRight: horizontalScale(theme.spacing.spacing_12),
   },
   contentText: {
     fontSize: horizontalScale(theme.fontSize.fontSize_18),
     lineHeight: verticalScale(theme.fontSize.fontSize_20),
-    marginHorizontal: horizontalScale(theme.spacing.spacing_12),
   },
   contentTextInEditMode: {
     color: theme.colors.edit,
