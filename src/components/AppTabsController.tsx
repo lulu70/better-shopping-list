@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import AppButton from './AppButton';
 import AddIcon from '../Icons/AddIcons';
@@ -10,17 +9,11 @@ import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 
 const AppTabsController = () => {
-  const { bottom } = useSafeAreaInsets();
   const { openAddModal } = React.useContext(MainContext);
   const { isSearching } = React.useContext(SearchContext);
 
   return (
-    <View
-      style={[
-        styles.container,
-        { paddingBottom: bottom + verticalScale(theme.spacing.spacing_12) },
-      ]}
-    >
+    <View style={[styles.container]}>
       <AppButton
         onPress={openAddModal}
         disabled={isSearching}
@@ -44,11 +37,11 @@ const styles = StyleSheet.create({
     borderTopColor: theme.colors.border,
     borderTopWidth: 1,
     alignItems: 'flex-start',
+    justifyContent: 'center',
+    minHeight: verticalScale(theme.spacing.spacing_60),
   },
   button: {
-    justifyContent: 'center',
+    flex: 1,
     alignItems: 'center',
-    width: horizontalScale(theme.spacing.spacing_48),
-    height: horizontalScale(theme.spacing.spacing_48),
   },
 });
