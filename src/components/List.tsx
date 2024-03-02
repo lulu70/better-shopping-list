@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, StyleSheet, ViewToken } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import AppButton from './AppButton';
 import ListItem from './ListItem';
 import theme from '../constants/theme';
 import MainContext from '../context/MainContext/MainContext';
@@ -35,12 +36,7 @@ const List = () => {
       onViewableItemsChanged={onViewableItemsChanged}
       ref={flatListRef}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={[
-        styles.contentContainerStyle,
-        {
-          paddingBottom: bottom + verticalScale(theme.spacing.spacing_512),
-        },
-      ]}
+      contentContainerStyle={styles.contentContainerStyle}
       data={shoppingList}
       renderItem={({ item }) => (
         <ListItem
@@ -49,6 +45,14 @@ const List = () => {
           isScrollingToItem={isScrollingToItem}
         />
       )}
+      ListFooterComponent={
+        <AppButton
+          onPress={() => {}}
+          style={{
+            height: bottom + verticalScale(theme.spacing.spacing_512),
+          }}
+        />
+      }
       keyExtractor={(item, index) => item.id || index.toString()}
     />
   );
