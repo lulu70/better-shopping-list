@@ -49,6 +49,7 @@ exports[`Main should match snapshot 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       {
+        "flexShrink": 1,
         "paddingHorizontal": 40,
       }
     }
@@ -182,12 +183,27 @@ exports[`Main should match snapshot 1`] = `
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
+      onViewableItemsChanged={[Function]}
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={0.0001}
       showsVerticalScrollIndicator={false}
       stickyHeaderIndices={[]}
-      viewabilityConfigCallbackPairs={[]}
+      viewabilityConfig={
+        {
+          "viewAreaCoveragePercentThreshold": 100,
+        }
+      }
+      viewabilityConfigCallbackPairs={
+        [
+          {
+            "onViewableItemsChanged": [Function],
+            "viewabilityConfig": {
+              "viewAreaCoveragePercentThreshold": 100,
+            },
+          },
+        ]
+      }
     >
       <View />
     </RCTScrollView>
@@ -196,16 +212,14 @@ exports[`Main should match snapshot 1`] = `
     style={
       [
         {
+          "alignItems": "flex-start",
           "backgroundColor": "#f8f9fa",
           "borderTopColor": "gray",
           "borderTopWidth": 1,
-          "bottom": 0,
+          "flex": 1,
           "flexDirection": "row",
-          "left": 0,
           "paddingHorizontal": 40,
           "paddingTop": 19.714285714285715,
-          "position": "absolute",
-          "width": "100%",
         },
         {
           "paddingBottom": 19.714285714285715,
@@ -249,7 +263,12 @@ exports[`Main should match snapshot 1`] = `
           {
             "opacity": 1,
           },
-          {},
+          {
+            "alignItems": "center",
+            "height": 96,
+            "justifyContent": "center",
+            "width": 96,
+          },
         ]
       }
     >

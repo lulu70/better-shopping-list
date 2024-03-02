@@ -21,7 +21,11 @@ const AppTabsController = () => {
         { paddingBottom: bottom + verticalScale(theme.spacing.spacing_12) },
       ]}
     >
-      <AppButton onPress={openAddModal} disabled={isSearching}>
+      <AppButton
+        onPress={openAddModal}
+        disabled={isSearching}
+        style={styles.button}
+      >
         <AddIcon />
       </AppButton>
     </View>
@@ -32,15 +36,19 @@ export default AppTabsController;
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    width: '100%',
-    bottom: 0,
-    left: 0,
+    flex: 1,
     backgroundColor: theme.colors.background,
     paddingTop: verticalScale(theme.spacing.spacing_12),
     flexDirection: 'row',
     paddingHorizontal: horizontalScale(theme.spacing.spacing_20),
     borderTopColor: theme.colors.border,
     borderTopWidth: 1,
+    alignItems: 'flex-start',
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: horizontalScale(theme.spacing.spacing_48),
+    height: horizontalScale(theme.spacing.spacing_48),
   },
 });

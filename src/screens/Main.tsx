@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   innerContainer: {
+    flexShrink: 1,
     paddingHorizontal: horizontalScale(theme.spacing.spacing_20),
   },
   headerContainer: {

@@ -14,9 +14,10 @@ import { type ItemWithId } from '../screens/Main';
 interface Props {
   item: ItemWithId;
   scrollToItem: (item: ItemWithId) => void;
+  isScrollingToItem: boolean;
 }
 
-const ListItem = ({ item, scrollToItem }: Props) => {
+const ListItem = ({ item, scrollToItem, isScrollingToItem }: Props) => {
   const {
     changeCheckedItem,
     deleteItem,
@@ -31,7 +32,7 @@ const ListItem = ({ item, scrollToItem }: Props) => {
   const isFirstRender = React.useRef(true);
 
   React.useEffect(() => {
-    if (itemInEditMode?.id === item.id) {
+    if (itemInEditMode?.id === item.id && isScrollingToItem) {
       scrollToItem(item);
     }
   }, [itemInEditMode]);
@@ -41,7 +42,9 @@ const ListItem = ({ item, scrollToItem }: Props) => {
       isFirstRender.current = false;
       return;
     }
-    scrollToItem(item);
+    if (isScrollingToItem) {
+      scrollToItem(item);
+    }
   }, [item.updatedAt]);
 
   const handleItemChange = (text: string) => {
