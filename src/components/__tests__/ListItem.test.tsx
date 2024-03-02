@@ -74,18 +74,26 @@ describe('ListItem', () => {
   it('should check the item', () => {
     (useContext as jest.MockedFunction<typeof useContext>)
       .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
       .mockImplementationOnce(() => mockSearchContextReturnValue);
-    render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
+    const { rerender } = render(
+      <ListItem item={sampleItem} scrollToItem={mockScrollToItem} />,
+    );
     const radioButtonIcon = screen.getByTestId('RadioButtonIcon');
     fireEvent.press(radioButtonIcon);
     expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
-    expect(mockScrollToItem).toHaveBeenCalledWith(sampleItem);
+    const updatedItem = { ...sampleItem, updatedAt: 1631067374, checked: true };
+    rerender(<ListItem item={updatedItem} scrollToItem={mockScrollToItem} />);
+    expect(mockScrollToItem).toHaveBeenCalledWith(updatedItem);
   });
   it('should uncheck the item', () => {
     (useContext as jest.MockedFunction<typeof useContext>)
       .mockImplementationOnce(() => mockMainContextReturnValue)
+      .mockImplementationOnce(() => mockSearchContextReturnValue)
+      .mockImplementationOnce(() => mockMainContextReturnValue)
       .mockImplementationOnce(() => mockSearchContextReturnValue);
-    render(
+    const { rerender } = render(
       <ListItem
         item={{ ...sampleItem, checked: true }}
         scrollToItem={mockScrollToItem}
@@ -94,10 +102,13 @@ describe('ListItem', () => {
     const checkButtonIcon = screen.getByTestId('CheckIcon');
     fireEvent.press(checkButtonIcon);
     expect(mockChangeCheckedItem).toHaveBeenCalledWith(sampleItem.id);
-    expect(mockScrollToItem).toHaveBeenCalledWith({
+    const updatedItem = {
       ...sampleItem,
-      checked: true,
-    });
+      updatedAt: 1631067374,
+      checked: false,
+    };
+    rerender(<ListItem item={updatedItem} scrollToItem={mockScrollToItem} />);
+    expect(mockScrollToItem).toHaveBeenCalledWith(updatedItem);
   });
   it('should delete the item', () => {
     (useContext as jest.MockedFunction<typeof useContext>)
@@ -115,7 +126,6 @@ describe('ListItem', () => {
     render(<ListItem item={sampleItem} scrollToItem={mockScrollToItem} />);
     const contentWrapper = screen.getByText(sampleItem.content);
     fireEvent.press(contentWrapper);
-    expect(mockScrollToItem).toHaveBeenCalledWith(sampleItem);
     expect(mockGoIntoEditMode).toHaveBeenCalledWith(sampleItem);
     expect(screen.toJSON()).toMatchSnapshot();
   });

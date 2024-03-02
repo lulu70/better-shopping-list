@@ -28,6 +28,7 @@ const ListItem = ({ item, scrollToItem }: Props) => {
   } = React.useContext(MainContext);
   const { isSearching } = React.useContext(SearchContext);
   const [itemContent, setItemContent] = React.useState(item.content);
+  const isFirstRender = React.useRef(true);
 
   React.useEffect(() => {
     if (itemInEditMode?.id === item.id) {
@@ -36,6 +37,10 @@ const ListItem = ({ item, scrollToItem }: Props) => {
   }, [itemInEditMode]);
 
   React.useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     scrollToItem(item);
   }, [item.updatedAt]);
 
