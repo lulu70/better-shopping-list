@@ -270,11 +270,10 @@ exports[`Main should match snapshot 1`] = `
           "borderTopWidth": 1,
           "flex": 1,
           "flexDirection": "row",
+          "justifyContent": "center",
+          "minHeight": 98.57142857142857,
           "paddingHorizontal": 40,
           "paddingTop": 19.714285714285715,
-        },
-        {
-          "paddingBottom": 19.714285714285715,
         },
       ]
     }
@@ -317,9 +316,7 @@ exports[`Main should match snapshot 1`] = `
           },
           {
             "alignItems": "center",
-            "height": 96,
-            "justifyContent": "center",
-            "width": 96,
+            "flex": 1,
           },
         ]
       }
