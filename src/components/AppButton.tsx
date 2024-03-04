@@ -4,7 +4,7 @@ interface Props {
   text?: string;
   style?: ViewStyle;
   textStyle?: TextStyle;
-  onPress: () => void;
+  onPress?: () => void;
   disabled?: boolean;
   pressedOpacity?: number;
   hitSlop?: number;

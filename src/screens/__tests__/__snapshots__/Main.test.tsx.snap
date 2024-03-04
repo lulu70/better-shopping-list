@@ -163,7 +163,7 @@ exports[`Main should match snapshot 1`] = `
     <RCTScrollView
       ListFooterComponent={
         <AppButton
-          onPress={[Function]}
+          pressedOpacity={1}
           style={
             {
               "height": 841.1428571428571,
