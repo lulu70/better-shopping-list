@@ -14,10 +14,10 @@ import { type ItemWithId } from '../screens/Main';
 interface Props {
   item: ItemWithId;
   scrollToItem: (item: ItemWithId) => void;
-  isScrollingToItem: boolean;
+  thereAreHiddenItems: boolean;
 }
 
-const ListItem = ({ item, scrollToItem, isScrollingToItem }: Props) => {
+const ListItem = ({ item, scrollToItem, thereAreHiddenItems }: Props) => {
   const {
     changeCheckedItem,
     deleteItem,
@@ -32,7 +32,7 @@ const ListItem = ({ item, scrollToItem, isScrollingToItem }: Props) => {
   const isFirstRender = React.useRef(true);
 
   React.useEffect(() => {
-    if (itemInEditMode?.id === item.id && isScrollingToItem) {
+    if (itemInEditMode?.id === item.id && thereAreHiddenItems) {
       scrollToItem(item);
     }
   }, [itemInEditMode]);
@@ -42,7 +42,7 @@ const ListItem = ({ item, scrollToItem, isScrollingToItem }: Props) => {
       isFirstRender.current = false;
       return;
     }
-    if (isScrollingToItem) {
+    if (thereAreHiddenItems) {
       scrollToItem(item);
     }
   }, [item.updatedAt]);

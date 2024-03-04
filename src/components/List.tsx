@@ -13,7 +13,7 @@ const List = () => {
   const { shoppingList } = React.useContext(MainContext);
   const { bottom } = useSafeAreaInsets();
   const flatListRef = React.useRef<FlatList<ItemWithId>>(null);
-  const [isScrollingToItem, setIsScrollingToItem] = React.useState(false);
+  const [thereAreHiddenItems, setThereAreHiddenItems] = React.useState(false);
   const scrollToItem = (item: ItemWithId) => {
     flatListRef.current?.scrollToItem({ item, animated: true });
   };
@@ -23,9 +23,9 @@ const List = () => {
     viewableItems: ViewToken[];
   }) => {
     if (shoppingList.length > viewableItems.length) {
-      setIsScrollingToItem(true);
+      setThereAreHiddenItems(true);
     } else {
-      setIsScrollingToItem(false);
+      setThereAreHiddenItems(false);
     }
   };
   return (
@@ -42,7 +42,7 @@ const List = () => {
         <ListItem
           item={item}
           scrollToItem={scrollToItem}
-          isScrollingToItem={isScrollingToItem}
+          thereAreHiddenItems={thereAreHiddenItems}
         />
       )}
       ListFooterComponent={

@@ -47,7 +47,7 @@ describe('ListItem', () => {
       <ListItem
         item={sampleItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     expect(screen.toJSON()).toMatchSnapshot();
@@ -61,7 +61,7 @@ describe('ListItem', () => {
       <ListItem
         item={{ ...sampleItem, checked: true }}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     expect(screen.toJSON()).toMatchSnapshot();
@@ -78,7 +78,7 @@ describe('ListItem', () => {
       <ListItem
         item={sampleItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     expect(screen.toJSON()).toMatchSnapshot();
@@ -94,7 +94,7 @@ describe('ListItem', () => {
       <ListItem
         item={sampleItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     const radioButtonIcon = screen.getByTestId('RadioButtonIcon');
@@ -105,7 +105,7 @@ describe('ListItem', () => {
       <ListItem
         item={updatedItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem
+        thereAreHiddenItems
       />,
     );
     expect(mockScrollToItem).toHaveBeenCalledWith(updatedItem);
@@ -120,7 +120,7 @@ describe('ListItem', () => {
       <ListItem
         item={{ ...sampleItem, checked: true }}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     const checkButtonIcon = screen.getByTestId('CheckIcon');
@@ -135,7 +135,7 @@ describe('ListItem', () => {
       <ListItem
         item={updatedItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     expect(mockScrollToItem).not.toHaveBeenCalled();
@@ -148,7 +148,7 @@ describe('ListItem', () => {
       <ListItem
         item={sampleItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     const radioButtonIcon = screen.getByTestId('TrashIcon');
@@ -163,7 +163,7 @@ describe('ListItem', () => {
       <ListItem
         item={sampleItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem={false}
+        thereAreHiddenItems={false}
       />,
     );
     const contentWrapper = screen.getByText(sampleItem.content);
@@ -191,7 +191,7 @@ describe('ListItem', () => {
       <ListItem
         item={sampleItem}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem
+        thereAreHiddenItems
       />,
     );
     const textInput = screen.getByDisplayValue(sampleItem.content);
@@ -220,7 +220,7 @@ describe('ListItem', () => {
       <ListItem
         item={{ ...sampleItem, checked: true }}
         scrollToItem={mockScrollToItem}
-        isScrollingToItem
+        thereAreHiddenItems
       />,
     );
     const textInput = screen.getByDisplayValue(sampleItem.content);
