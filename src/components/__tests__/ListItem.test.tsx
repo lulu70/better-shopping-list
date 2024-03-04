@@ -108,7 +108,7 @@ describe('ListItem', () => {
         thereAreHiddenItems
       />,
     );
-    expect(mockScrollToItem).toHaveBeenCalledWith(updatedItem);
+    expect(mockScrollToItem).not.toHaveBeenCalledWith(updatedItem);
   });
   it('should uncheck the item and not scroll', () => {
     (useContext as jest.MockedFunction<typeof useContext>)

@@ -42,7 +42,7 @@ const ListItem = ({ item, scrollToItem, thereAreHiddenItems }: Props) => {
       isFirstRender.current = false;
       return;
     }
-    if (thereAreHiddenItems) {
+    if (thereAreHiddenItems && !item.checked) {
       scrollToItem(item);
     }
   }, [item.updatedAt]);
@@ -51,7 +51,9 @@ const ListItem = ({ item, scrollToItem, thereAreHiddenItems }: Props) => {
     setItemContent(text);
   };
   const handleInputBlur = () => {
-    editItem(item.id, itemContent);
+    if (itemContent !== item.content) {
+      editItem(item.id, itemContent);
+    }
     getOutOfEditMode();
   };
   const handleContentWrapperPress = () => {
