@@ -1,8 +1,9 @@
 import React from 'react';
-import { FlatList, Keyboard, StyleSheet, View } from 'react-native';
+import { FlatList, Keyboard, StyleSheet, Text, View } from 'react-native';
 
 import AppButton from './AppButton';
 import AppTextInput from './AppTextInput';
+import AddIcon from '../Icons/AddIcons';
 import CloseIcon from '../Icons/CloseIcon';
 import SearchIcon from '../Icons/SearchIcon';
 import theme from '../constants/theme';
@@ -12,7 +13,8 @@ import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 import { ItemWithId } from '../screens/Main';
 
 const Search = () => {
-  const { shoppingList, changeCheckedItem } = React.useContext(MainContext);
+  const { shoppingList, changeCheckedItem, addItem } =
+    React.useContext(MainContext);
   const { changeIsSearching, isSearching } = React.useContext(SearchContext);
   const [inputValue, setInputValue] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<ItemWithId[]>([]);
@@ -54,6 +56,12 @@ const Search = () => {
     }
   };
 
+  const handleAddItemPress = () => {
+    addItem(inputValue);
+    changeIsSearching(false);
+    resetSearchState();
+  };
+
   return (
     <View style={styles.container}>
       <AppTextInput
@@ -84,6 +92,18 @@ const Search = () => {
           keyboardShouldPersistTaps="always"
         />
       )}
+      {searchResults.length === 0 && inputValue.length > 0 && (
+        <View style={styles.noResultsContainer}>
+          <Text style={styles.searchItemText}>No results found for: </Text>
+          <Text style={[styles.searchItemText, styles.noResultsValue]}>
+            {inputValue}
+          </Text>
+          <AppButton style={styles.addButton} onPress={handleAddItemPress}>
+            <AddIcon />
+            <Text>Add it now</Text>
+          </AppButton>
+        </View>
+      )}
     </View>
   );
 };
@@ -107,5 +127,19 @@ const styles = StyleSheet.create({
   searchItemText: {
     fontSize: horizontalScale(theme.fontSize.fontSize_18),
     lineHeight: verticalScale(theme.fontSize.fontSize_20),
+  },
+  noResultsContainer: {
+    paddingTop: verticalScale(theme.spacing.spacing_20),
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.border,
+    alignItems: 'center',
+  },
+  noResultsValue: {
+    fontWeight: theme.fontWeight.bold,
+    marginTop: verticalScale(theme.spacing.spacing_10),
+  },
+  addButton: {
+    paddingVertical: verticalScale(theme.spacing.spacing_20),
+    alignItems: 'center',
   },
 });
