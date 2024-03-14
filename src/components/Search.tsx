@@ -56,7 +56,7 @@ const Search = () => {
     }
   };
 
-  const handleAddItemPress = () => {
+  const handleNoResultsPress = () => {
     addItem(inputValue);
     changeIsSearching(false);
     resetSearchState();
@@ -93,16 +93,16 @@ const Search = () => {
         />
       )}
       {searchResults.length === 0 && inputValue.length > 0 && (
-        <View style={styles.noResultsContainer}>
+        <AppButton
+          style={styles.noResultsContainer}
+          onPress={handleNoResultsPress}
+        >
           <Text style={styles.searchItemText}>No results found for: </Text>
           <Text style={[styles.searchItemText, styles.noResultsValue]}>
             {inputValue}
           </Text>
-          <AppButton style={styles.addButton} onPress={handleAddItemPress}>
-            <AddIcon />
-            <Text>Add it now</Text>
-          </AppButton>
-        </View>
+          <AddIcon style={styles.addIcon} />
+        </AppButton>
       )}
     </View>
   );
@@ -129,17 +129,15 @@ const styles = StyleSheet.create({
     lineHeight: verticalScale(theme.fontSize.fontSize_20),
   },
   noResultsContainer: {
-    paddingTop: verticalScale(theme.spacing.spacing_20),
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
     alignItems: 'center',
+    paddingTop: verticalScale(theme.spacing.spacing_20),
+    paddingBottom: verticalScale(theme.spacing.spacing_10),
   },
   noResultsValue: {
     fontWeight: theme.fontWeight.bold,
     marginTop: verticalScale(theme.spacing.spacing_10),
   },
-  addButton: {
-    paddingVertical: verticalScale(theme.spacing.spacing_20),
-    alignItems: 'center',
-  },
+  addIcon: { marginTop: verticalScale(theme.spacing.spacing_20) },
 });
