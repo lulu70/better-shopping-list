@@ -48,7 +48,7 @@ const AddModal = () => {
             <AppTextInput
               value={inputValue}
               onChangeText={onChangeText}
-              autoFocus
+              isFocused
               placeholder="Add an item here"
               rightIcon={inputValue.length > 0 && <CloseIcon />}
               onRightIconPress={resetInputValue}

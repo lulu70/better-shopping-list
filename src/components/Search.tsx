@@ -15,7 +15,12 @@ import { ItemWithId } from '../screens/Main';
 const Search = () => {
   const { shoppingList, changeCheckedItem, addItem } =
     React.useContext(MainContext);
-  const { changeIsSearching, isSearching } = React.useContext(SearchContext);
+  const {
+    changeIsSearching,
+    isSearching,
+    searchIsFocused,
+    changeSearchIsFocused,
+  } = React.useContext(SearchContext);
   const [inputValue, setInputValue] = React.useState('');
   const [searchResults, setSearchResults] = React.useState<ItemWithId[]>([]);
 
@@ -35,6 +40,7 @@ const Search = () => {
   const resetSearchState = () => {
     setSearchResults([]);
     setInputValue('');
+    changeSearchIsFocused(false);
     Keyboard.dismiss();
   };
   const handleSearchItemPress = (item: ItemWithId) => {
@@ -73,6 +79,7 @@ const Search = () => {
         rightIcon={isSearching && inputValue.length > 0 && <CloseIcon />}
         leftIcon={<SearchIcon />}
         onRightIconPress={handleRightIconPress}
+        isFocused={searchIsFocused}
       />
       {searchResults.length > 0 && (
         <FlatList

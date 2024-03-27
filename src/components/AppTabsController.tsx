@@ -4,18 +4,17 @@ import { StyleSheet, View } from 'react-native';
 import AppButton from './AppButton';
 import AddIcon from '../Icons/AddIcons';
 import theme from '../constants/theme';
-import MainContext from '../context/MainContext/MainContext';
 import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 
 const AppTabsController = () => {
-  const { openAddModal } = React.useContext(MainContext);
-  const { isSearching } = React.useContext(SearchContext);
+  const { isSearching, changeSearchIsFocused } =
+    React.useContext(SearchContext);
 
   return (
     <View style={[styles.container]}>
       <AppButton
-        onPress={openAddModal}
+        onPress={() => changeSearchIsFocused(true)}
         disabled={isSearching}
         style={styles.button}
       >

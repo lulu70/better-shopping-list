@@ -42,6 +42,7 @@ const ListItem = ({ item, scrollToItem, thereAreHiddenItems }: Props) => {
       isFirstRender.current = false;
       return;
     }
+    console.log({ thereAreHiddenItems });
     if (thereAreHiddenItems && !item.checked) {
       scrollToItem(item);
     }

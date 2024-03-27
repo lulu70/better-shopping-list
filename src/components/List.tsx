@@ -21,6 +21,9 @@ const List = () => {
   const { bottom } = useSafeAreaInsets();
   const flatListRef = React.useRef<FlatList<ItemWithId>>(null);
   const [thereAreHiddenItems, setThereAreHiddenItems] = React.useState(false);
+  React.useEffect(() => {
+    scrollToItem(shoppingList[0]);
+  }, [shoppingList]);
   const scrollToItem = (item: ItemWithId) => {
     flatListRef.current?.scrollToItem({ item, animated: true });
   };

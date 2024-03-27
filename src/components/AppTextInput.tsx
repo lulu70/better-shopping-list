@@ -8,7 +8,7 @@ import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
 interface Props {
   value: string;
   onChangeText: (text: string) => void;
-  autoFocus?: boolean;
+  isFocused?: boolean;
   placeholder?: string;
   onfocus?: () => void;
   onBlur?: () => void;
@@ -22,7 +22,7 @@ interface Props {
 const AppTextInput = ({
   value,
   onChangeText,
-  autoFocus = false,
+  isFocused = false,
   placeholder,
   onfocus,
   onBlur,
@@ -35,8 +35,8 @@ const AppTextInput = ({
   const inputRef = React.useRef<TextInput>(null);
 
   React.useEffect(() => {
-    if (autoFocus) inputRef?.current?.focus();
-  }, [autoFocus]);
+    if (isFocused) inputRef?.current?.focus();
+  }, [isFocused]);
 
   return (
     <View style={styles.container}>
