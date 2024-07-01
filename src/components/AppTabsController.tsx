@@ -3,11 +3,11 @@ import { StyleSheet, View } from 'react-native';
 
 import AppButton from './AppButton';
 import AddIcon from '../Icons/AddIcons';
+import SearchIcon from '../Icons/SearchIcon';
 import theme from '../constants/theme';
+import MainContext from '../context/MainContext/MainContext';
 import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
-import MainContext from '../context/MainContext/MainContext';
-import SearchIcon from '../Icons/SearchIcon';
 
 const AppTabsController = () => {
   const { isSearching, changeSearchIsFocused } =

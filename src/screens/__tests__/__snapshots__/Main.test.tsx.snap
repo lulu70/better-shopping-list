@@ -90,13 +90,16 @@ exports[`Main should match snapshot 1`] = `
           >
             <RNSVGSvgView
               align="xMidYMid"
-              bbHeight="48"
-              bbWidth="48"
+              bbHeight={40}
+              bbWidth={40}
+              fill="none"
               focusable={false}
-              height={48}
+              height={40}
               meetOrSlice={0}
               minX={0}
-              minY={-960}
+              minY={0}
+              stroke="gray"
+              strokeWidth={1.5}
               style={
                 [
                   {
@@ -105,31 +108,48 @@ exports[`Main should match snapshot 1`] = `
                   },
                   {
                     "flex": 0,
-                    "height": 48,
-                    "width": 48,
+                    "height": 40,
+                    "width": 40,
                   },
                 ]
               }
-              vbHeight={960}
-              vbWidth={960}
-              width={48}
+              vbHeight={24}
+              vbWidth={24}
+              width={40}
             >
               <RNSVGGroup
-                fill={
+                fill={null}
+                propList={
+                  [
+                    "fill",
+                    "stroke",
+                    "strokeWidth",
+                  ]
+                }
+                stroke={
                   {
-                    "payload": 4278190080,
+                    "payload": 4286611584,
                     "type": 0,
                   }
                 }
+                strokeWidth={1.5}
               >
                 <RNSVGPath
-                  d="M779.385-153.846 528.923-404.307q-30 25.538-69 39.538-39 14-78.385 14-96.1 0-162.665-66.529-66.566-66.529-66.566-162.577t66.529-162.702q66.529-66.654 162.577-66.654 96.049 0 162.702 66.565Q610.769-676.101 610.769-580q0 41.692-14.769 80.692-14.769 39-38.769 66.693l250.462 250.461-28.308 28.308ZM381.538-390.769q79.616 0 134.423-54.808Q570.769-500.385 570.769-580q0-79.615-54.808-134.423-54.807-54.808-134.423-54.808-79.615 0-134.423 54.808Q192.308-659.615 192.308-580q0 79.615 54.807 134.423 54.808 54.808 134.423 54.808Z"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                   fill={
                     {
                       "payload": 4278190080,
                       "type": 0,
                     }
                   }
+                  propList={
+                    [
+                      "strokeLinecap",
+                      "strokeLinejoin",
+                    ]
+                  }
+                  strokeLinecap={1}
+                  strokeLinejoin={1}
                 />
               </RNSVGGroup>
             </RNSVGSvgView>
@@ -264,7 +284,7 @@ exports[`Main should match snapshot 1`] = `
     style={
       [
         {
-          "alignItems": "flex-start",
+          "alignItems": "center",
           "backgroundColor": "#f8f9fa",
           "borderTopColor": "gray",
           "borderTopWidth": 1,
@@ -323,8 +343,8 @@ exports[`Main should match snapshot 1`] = `
     >
       <RNSVGSvgView
         align="xMidYMid"
-        bbHeight="64"
-        bbWidth="64"
+        bbHeight={64}
+        bbWidth={64}
         focusable={false}
         height={64}
         meetOrSlice={0}
@@ -363,6 +383,115 @@ exports[`Main should match snapshot 1`] = `
                 "type": 0,
               }
             }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={10}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          {
+            "opacity": 1,
+          },
+          {
+            "alignItems": "center",
+            "flex": 1,
+          },
+        ]
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={52}
+        bbWidth={52}
+        fill="none"
+        focusable={false}
+        height={52}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        stroke="black"
+        strokeWidth={2.5}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 52,
+              "width": 52,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={52}
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          strokeWidth={2.5}
+        >
+          <RNSVGPath
+            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
           />
         </RNSVGGroup>
       </RNSVGSvgView>

@@ -53,8 +53,8 @@ exports[`ListItem should go into edit mode 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       focusable={false}
       height={52}
       meetOrSlice={0}
@@ -194,8 +194,8 @@ exports[`ListItem should go into edit mode 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       fill="#dc3545"
       focusable={false}
       height={52}
@@ -301,8 +301,8 @@ exports[`ListItem should match snapshot checked 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       focusable={false}
       height={52}
       meetOrSlice={0}
@@ -442,8 +442,8 @@ exports[`ListItem should match snapshot checked 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       fill="#dc3545"
       focusable={false}
       height={52}
@@ -549,8 +549,8 @@ exports[`ListItem should match snapshot in searching state 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       focusable={false}
       height={52}
       meetOrSlice={0}
@@ -690,8 +690,8 @@ exports[`ListItem should match snapshot in searching state 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       fill="#dc3545"
       focusable={false}
       height={52}
@@ -797,8 +797,8 @@ exports[`ListItem should match snapshot unchecked 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       focusable={false}
       height={52}
       meetOrSlice={0}
@@ -938,8 +938,8 @@ exports[`ListItem should match snapshot unchecked 1`] = `
   >
     <RNSVGSvgView
       align="xMidYMid"
-      bbHeight="52"
-      bbWidth="52"
+      bbHeight={52}
+      bbWidth={52}
       fill="#dc3545"
       focusable={false}
       height={52}
