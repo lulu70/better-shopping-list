@@ -4,14 +4,29 @@ import Svg, { SvgProps, Path } from 'react-native-svg';
 import theme from '../constants/theme';
 import { horizontalScale } from '../helpers/scaleHelpers';
 
-const SearchIcon = (props: SvgProps) => (
+interface Props extends SvgProps {
+  size?: number;
+}
+const SearchIcon = ({
+  stroke = theme.colors.text_black,
+  strokeWidth = 1.5,
+  size = horizontalScale(theme.spacing.spacing_20),
+  ...props
+}: Props) => (
   <Svg
-    width={horizontalScale(theme.spacing.spacing_24)}
-    height={horizontalScale(theme.spacing.spacing_24)}
-    viewBox="0 -960 960 960"
+    fill="none"
+    width={size}
+    height={size}
+    stroke={stroke}
+    strokeWidth={strokeWidth}
+    viewBox="0 0 24 24"
     {...props}
   >
-    <Path d="M779.385-153.846 528.923-404.307q-30 25.538-69 39.538-39 14-78.385 14-96.1 0-162.665-66.529-66.566-66.529-66.566-162.577t66.529-162.702q66.529-66.654 162.577-66.654 96.049 0 162.702 66.565Q610.769-676.101 610.769-580q0 41.692-14.769 80.692-14.769 39-38.769 66.693l250.462 250.461-28.308 28.308ZM381.538-390.769q79.616 0 134.423-54.808Q570.769-500.385 570.769-580q0-79.615-54.808-134.423-54.807-54.808-134.423-54.808-79.615 0-134.423 54.808Q192.308-659.615 192.308-580q0 79.615 54.807 134.423 54.808 54.808 134.423 54.808Z" />
+    <Path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+    />
   </Svg>
 );
 

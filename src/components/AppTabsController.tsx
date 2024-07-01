@@ -6,19 +6,32 @@ import AddIcon from '../Icons/AddIcons';
 import theme from '../constants/theme';
 import SearchContext from '../context/SearchContext/SearchContext';
 import { horizontalScale, verticalScale } from '../helpers/scaleHelpers';
+import MainContext from '../context/MainContext/MainContext';
+import SearchIcon from '../Icons/SearchIcon';
 
 const AppTabsController = () => {
   const { isSearching, changeSearchIsFocused } =
     React.useContext(SearchContext);
+  const { openAddModal, addModalIsOpen } = React.useContext(MainContext);
 
   return (
     <View style={[styles.container]}>
+      <AppButton
+        onPress={() => openAddModal()}
+        disabled={addModalIsOpen}
+        style={styles.button}
+      >
+        <AddIcon />
+      </AppButton>
       <AppButton
         onPress={() => changeSearchIsFocused(true)}
         disabled={isSearching}
         style={styles.button}
       >
-        <AddIcon />
+        <SearchIcon
+          size={horizontalScale(theme.spacing.spacing_26)}
+          strokeWidth={2.5}
+        />
       </AppButton>
     </View>
   );
@@ -35,7 +48,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: horizontalScale(theme.spacing.spacing_20),
     borderTopColor: theme.colors.border,
     borderTopWidth: 1,
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'center',
     minHeight: verticalScale(theme.spacing.spacing_60),
   },

@@ -77,7 +77,7 @@ const Search = () => {
         onfocus={handleInputFocus}
         onBlur={handleInputBlur}
         rightIcon={isSearching && inputValue.length > 0 && <CloseIcon />}
-        leftIcon={<SearchIcon />}
+        leftIcon={<SearchIcon stroke={theme.colors.text_disabled} />}
         onRightIconPress={handleRightIconPress}
         isFocused={searchIsFocused}
       />
