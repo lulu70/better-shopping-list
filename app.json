@@ -23,9 +23,13 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.liorco70.bettershoppinglist"
+      "bundleIdentifier": "com.liorco70.bettershoppinglist",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "com.liorco70.bettershoppinglist",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
